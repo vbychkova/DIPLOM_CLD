@@ -1,0 +1,33 @@
+#paper {
+    display: inline-block;
+    border: solid black;
+    margin: 5px 20px;
+}
+
+.marker-arrowhead {
+    opacity: 0;
+}
+
+ .marker-vertex {
+     opacity: 0;
+}
+
+.link-tools { display: none }
+
+.commandTools{
+    width: 50%;
+    margin: auto;
+}
+
+#stopHistory{
+    margin-left: 100%;
+}
+
+#stopLoops{
+    margin-left: 100%;
+}
+
+.disabledPaper {
+    pointer-events: none;
+}
+
