@@ -36,7 +36,7 @@ $("#watchLoops").on('click', function () {
     $('#stopLoops').css("display", "block");
     $('#loops').css("display", "block");
     for (i = 0; i < graphlib.alg.findCycles(graph.toGraphLib()).length; i++) {
-        console.log(graphlib.alg.findCycles(graph.toGraphLib())[0]);
+        console.log(graphlib.alg.findCycles(graph.toGraphLib()));
         $('#loops').append('<option class="loop" value="' + (i) + '">' + (i + 1) + '</option>');
     }
 
@@ -56,8 +56,10 @@ $('#loops').on('change', function () {
     var value = this.value;
     if (value !== 'none') {
         var cycles = graphlib.alg.findCycles(graph.toGraphLib());
+        console.log(cycles);
         var elements = cycles[value];
         elements.push(elements[0]);
+        console.log(elements);
         var links = graph.getLinks();
         var neededLinks = findLinks(elements, links);
         console.log(neededLinks.length);
@@ -87,8 +89,7 @@ function findLinks(elements, links) {
             var link = links[k];
             console.log(link.getSourceElement().id);
             console.log(link.getTargetElement().id);
-            if ((link.getSourceElement().id === start && link.getTargetElement().id === end)
-                || (link.getSourceElement().id === end && link.getTargetElement().id === start)) {
+            if ((link.getSourceElement().id === end && link.getTargetElement().id === start)) {
                 neededLinks.push(link.id);
                 break;
             }
@@ -98,8 +99,10 @@ function findLinks(elements, links) {
 }
 
 function getLinksToGreyColor(links, neededLinks) {
+    console.log(neededLinks);
     var otherLinks = [];
     links.forEach(function (link) {
+        console.log(link);
         if (!neededLinks.includes(link.id)) {
             otherLinks.push(link);
         }
