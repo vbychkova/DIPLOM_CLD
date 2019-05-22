@@ -14,17 +14,24 @@ document.onkeydown = function KeyPress(e) {
 $(document).on('click', '.labels', function () {
     var elemId = $(this).parent()[0].getAttribute("model-id");
     var currElement = graph.getCell(elemId);
-
+    var type=setSelectedLinkType(currElement);
+    var checked=clickToRadioInfo(type);
     bootbox.dialog({
         message: "<p>Управление Связями</p> " +
             " <div class=\"form-group\">\n" +
-            "  <label for=\"selectLink\">Тип связи:</label>\n" +
-            "  <select class=\"form-control\" id=\"selectLink\">\n" +
-            "    <option value='1'>Положительная связь</option>\n" +
-            "    <option value='2'>Положительная связь проявляющаяся со временем</option>\n" +
-            "    <option value='3'>Отрицательная связь</option>\n" +
-            "    <option value='4'>Отрицательная связь проявляющаяся со временем</option>\n" +
-            "  </select>\n" +
+            " Тип связи:\n" +
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' "+checked[0]+">Положительная связь</label>\n" +
+            "</div>\n" +
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='2' "+checked[1]+">Положительная связь проявляющаяся со временем</label>\n" +
+            "</div>"+
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' "+checked[2]+">Отрицательная связь</label>\n" +
+            "</div>\n" +
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='4' "+checked[3]+">Отрицательная связь проявляющаяся со временем</label>\n" +
+            "</div>"+
             "</div> ",
 
         buttons: {
@@ -33,8 +40,8 @@ $(document).on('click', '.labels', function () {
                 label: "Изменить тип связи",
                 className: 'btn-primary',
                 callback: function () {
-                    var selectedOption = $('#selectLink').val();
-                    setTypeOfLink(currElement, selectedOption)
+                    var selectedOption = $('.select').toArray().filter(getClickedRadioButton)[0].id;
+                    setTypeOfLink(currElement, selectedOption);
                     setHistory();
                 }
             },
@@ -51,6 +58,37 @@ $(document).on('click', '.labels', function () {
     });
     $("#selectLink").val(setSelectedLinkType(currElement));
 });
+
+$('.select').click(function () {
+    var elem =$(this);
+    var elems=$('.select').toArray();
+    elems.forEach(function (element) {
+        if(element.id!== elem){
+            element.checked=false;
+        }
+    })
+});
+function getClickedRadioButton(value) {
+    return value.checked;
+}
+
+function clickToRadioInfo(type) {
+    var elems=['','','',''];
+    if(type===POSITIVE_LINK_VALUE){
+        elems[0]='checked';
+    }
+    if(type===POSITIVE_BY_TIME_LINK_VALUE){
+        elems[1]='checked';
+    }
+    if(type===NEGATIVE_LINK_VALUE){
+        elems[2]='checked';
+    }
+    if(type===NEGATIVE_BY_TIME_LINK_VALUE){
+        elems[3]='checked';
+    }
+    return elems;
+}
+
 
 function setTypeOfLink(element, selectedOption) {
     switch (selectedOption) {

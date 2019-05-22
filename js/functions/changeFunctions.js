@@ -54,7 +54,7 @@ $("#stopLoops").on('click', function () {
 
 $('#loops').on('change', function () {
     var value = this.value;
-    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1])
+    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1]);
     if (value !== 'none') {
         var cycles = graphlib.alg.findCycles(graph.toGraphLib());
         console.log(cycles);
