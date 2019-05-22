@@ -36,20 +36,20 @@ $(document).on('click', '.labels', function () {
 
         buttons: {
 
+            positive: {
+                label: "Удалить связь",
+                className: 'btn-danger deleteLink',
+                callback: function () {
+                    currElement.remove();
+                    setHistory();
+                }
+            },
             changeTypeOfLink: {
-                label: "Изменить тип связи",
+                label: "Сохранить",
                 className: 'btn-primary',
                 callback: function () {
                     var selectedOption = $('.select').toArray().filter(getClickedRadioButton)[0].id;
                     setTypeOfLink(currElement, selectedOption);
-                    setHistory();
-                }
-            },
-            positive: {
-                label: "Удалить связь",
-                className: 'btn-danger',
-                callback: function () {
-                    currElement.remove();
                     setHistory();
                 }
             }
