@@ -1,3 +1,4 @@
+"use strict";
 var slider = document.getElementById('historyRange');
 var box = document.getElementById("box");
 
@@ -35,8 +36,7 @@ $("#watchLoops").on('click', function () {
     $('#watchHistory').css("display", "none");
     $('#stopLoops').css("display", "block");
     $('#loops').css("display", "block");
-    for (i = 0; i < graphlib.alg.findCycles(graph.toGraphLib()).length; i++) {
-        console.log(graphlib.alg.findCycles(graph.toGraphLib()));
+    for (var i = 0; i < graphlib.alg.findCycles(graph.toGraphLib()).length; i++) {
         $('#loops').append('<option class="loop" value="' + (i) + '">' + (i + 1) + '</option>');
     }
 
@@ -81,21 +81,18 @@ $('#loops').on('change', function () {
 
 function findLinks(elements, links) {
     var neededLinks = [];
-    for (var i = 0; i < elements.length - 1; i++) {
-        var start = elements[i];
-        var end = elements[i + 1];
-        console.log(start);
-        console.log(end);
-        for (var k = 0; k < links.length; k++) {
-            var link = links[k];
-            console.log(link.getSourceElement().id);
-            console.log(link.getTargetElement().id);
-            if ((link.getSourceElement().id === end && link.getTargetElement().id === start)) {
-                neededLinks.push(link.id);
-                break;
-            }
-        }
+    for (var i = 0; i < elements.length-1; i++) {
+        var start = graph.getCell(elements[i]);
+        var end = graph.getCell(elements[i + 1]);
+        var outboundLinks = graph.getConnectedLinks(end, { outbound: true });
+        var inboundLinks = graph.getConnectedLinks(start, { inbound:true });
+        outboundLinks.forEach(link=>{
+            var linkToAdd=inboundLinks.filter(outLink=>outLink.id===link.id);
+            linkToAdd.forEach(add =>  neededLinks.push(add.id));
+            console.log(neededLinks);
+        })
     }
+
     return neededLinks;
 }
 
