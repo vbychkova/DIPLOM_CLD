@@ -97,7 +97,7 @@ function setTypeOfLink(element, selectedOption) {
             break;
 
         case POSITIVE_BY_TIME_LINK_VALUE:
-            customizeLinks(element, RED, '+', '||');
+            customizeLinks(element, RED, '+', '∥');
             break;
 
         case NEGATIVE_LINK_VALUE:
@@ -105,7 +105,7 @@ function setTypeOfLink(element, selectedOption) {
             break;
 
         case NEGATIVE_BY_TIME_LINK_VALUE:
-            customizeLinks(element, BLUE, ' – ', '||');
+            customizeLinks(element, BLUE, ' – ', '∥');
             break;
     }
 }

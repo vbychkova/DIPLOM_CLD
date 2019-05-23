@@ -19,15 +19,15 @@ var paper = new joint.dia.Paper({
 
             attrs: {
                 '.marker-target': {
-                    fill: GREY,
-                    stroke: GREY,
+                    fill: RED,
+                    stroke: RED,
                     d: 'M 10 0 L 0 5 L 10 10 z'
                 },
 
                 '.connection': {
                     'fill': 'none',
                     'stroke-width': '1',
-                    'stroke': GREY,
+                    'stroke': RED,
                     'opacity': '0.4'
 
                 }
@@ -40,11 +40,11 @@ var paper = new joint.dia.Paper({
                         {
                             text:
                                 {
-                                    text: '   ',
+                                    text: '+',
                                     'class': 'labels',
                                     'font-weight': 'bold',
-                                    "font-size": "25",
-                                    fill: WHITE_SPACE, 'font-family': 'sans-serif'
+                                    "font-size": "15",
+                                    fill: RED, 'font-family': 'sans-serif'
                                 }
                         }
                 },
@@ -54,7 +54,11 @@ var paper = new joint.dia.Paper({
                         {
                             text:
                                 {
-                                    text: ''
+                                    text: '',
+                                    'class': 'labels',
+                                    "font-size": "15",
+                                    fill: RED,
+                                    'font-family': 'system-ui'
                                 }
                         }
                 }
@@ -62,7 +66,7 @@ var paper = new joint.dia.Paper({
 
         });
         link.on('change:source change:target', function (link) {
-            if (link.get('source').id && link.get('target').id && link.get('source').id!==link.get('target').id) {
+            if (link.get('source').id && link.get('target').id && link.get('source').id !== link.get('target').id) {
                 setHistory();
             }
         });
@@ -79,7 +83,7 @@ createElementPalette(10, 30);
 createCleanPalette(10, 180);
 
 function findLoops(g) {
-    return _.filter(tarjan(g), function(cmpt) {
+    return _.filter(tarjan(g), function (cmpt) {
         return cmpt.length > 1 || (cmpt.length === 1 && g.hasEdge(cmpt[0], cmpt[0]));
     });
 }

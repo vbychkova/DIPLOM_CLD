@@ -29,7 +29,7 @@ joint.dia.Link.define('fsa.Arrow', {
                                 text: '   ',
                                 'font-family': 'sans-serif',
                                 'font-weight': 'bold',
-                                "font-size": "25"
+                                "font-size": "15"
                             }
                     }
             }
@@ -40,7 +40,9 @@ joint.dia.Link.define('fsa.Arrow', {
                     {
                         text:
                             {
-                                text: ''
+                                text: '',
+                                'font-family': 'sans-serif',
+                                "font-size": "15"
                             }
                     }
             }

@@ -20,14 +20,14 @@ function setSelectedLinkType(element) {
     var sign=element.label(0).attrs.text.text;
     var timeFlag=element.label(1).attrs.text.text;
     if(sign=="+"){
-        if(timeFlag=="||"){
+        if(timeFlag=="∥"){
             return POSITIVE_BY_TIME_LINK_VALUE;
         }
         return POSITIVE_LINK_VALUE;
     }
 
     if(sign==" – "){
-        if(timeFlag=="||"){
+        if(timeFlag=="∥"){
             return NEGATIVE_BY_TIME_LINK_VALUE;
         }
         return NEGATIVE_LINK_VALUE;
