@@ -36,11 +36,47 @@ $("#watchLoops").on('click', function () {
     $('#watchHistory').css("display", "none");
     $('#stopLoops').css("display", "block");
     $('#loops').css("display", "block");
-    for (var i = 0; i < graphlib.alg.findCycles(graph.toGraphLib()).length; i++) {
+    for (var i = 0; i < findCycles().length; i++) {
         $('#loops').append('<option class="loop" value="' + (i) + '">' + (i + 1) + '</option>');
     }
 
 });
+
+function findCycles(){
+    var allCells=graph.getElements();
+    console.log(allCells);
+    var points=[];
+    var statuses={};
+    allCells.forEach(elem=>{
+        var outboundLinks = graph.getConnectedLinks(elem, { outbound: true });
+        var children=[];
+        outboundLinks.forEach(link=>{
+            children.push(link.get("target"));
+        });
+        points.push({element: elem,children:children});
+        statuses[elem.id]=0;
+    });
+    var cycles=[];
+    findCyclesRecursive(points[0],[],cycles,statuses,points);
+    return cycles;
+}
+
+function findCyclesRecursive(point,cycle,cycles,statuses,points){
+    statuses[point.element.id]=1;
+    point.children.forEach(child=>{
+        var childStatus=statuses[child.id];
+        cycle.push(point.element);
+        console.log(childStatus);
+        if(childStatus===0){
+            var newPoint=points.filter(p=>child.id===p.element.id)[0];
+            findCyclesRecursive(newPoint,cycle,cycles,statuses,points);
+        }
+        if(childStatus===1){
+            cycles.push(cycle);
+        }
+    });
+    statuses[point.element.id]=2;
+}
 
 $("#stopLoops").on('click', function () {
     $("#paper").removeClass("disabledPaper");
@@ -56,13 +92,13 @@ $('#loops').on('change', function () {
     var value = this.value;
     graph.fromJSON(historyOfGraph[historyOfGraph.length - 1]);
     if (value !== 'none') {
-        var cycles = graphlib.alg.findCycles(graph.toGraphLib());
+        var cycles = findCycles();
         console.log(cycles);
         var elements = cycles[value];
         elements.push(elements[0]);
         console.log(elements);
         var links = graph.getLinks();
-        var neededLinks = findLinks(elements, links);
+        var neededLinks = findLinks(elements);
         console.log(neededLinks.length);
         var otherLinks = getLinksToGreyColor(links, neededLinks);
         console.log(otherLinks.length);
@@ -79,7 +115,7 @@ $('#loops').on('change', function () {
     }
 });
 
-function findLinks(elements, links) {
+function findLinks(elements) {
     var neededLinks = [];
     for (var i = 0; i < elements.length-1; i++) {
         var start = graph.getCell(elements[i]);
