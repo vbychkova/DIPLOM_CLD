@@ -42,40 +42,53 @@ $("#watchLoops").on('click', function () {
 
 });
 
-function findCycles(){
-    var allCells=graph.getElements();
-    console.log(allCells);
-    var points=[];
-    var statuses={};
-    allCells.forEach(elem=>{
-        var outboundLinks = graph.getConnectedLinks(elem, { outbound: true });
-        var children=[];
-        outboundLinks.forEach(link=>{
-            children.push(link.get("target"));
+function findCycles() {
+    var allCells = graph.getElements();
+    var cGraph = new Graph();
+    allCells.forEach(elem => {
+        var id = elem.id;
+        cGraph.nodes.push(id);
+        var arrows = [];
+
+        var outboundLinks = graph.getConnectedLinks(elem, {outbound: true});
+        outboundLinks.forEach(link => {
+            arrows.push(link.get("target").id);
         });
-        points.push({element: elem,children:children});
-        statuses[elem.id]=0;
+        cGraph.arrows.set(id, arrows);
     });
-    var cycles=[];
-    findCyclesRecursive(points[0],[],cycles,statuses,points);
-    return cycles;
+    var cycles = cGraph.findCircuits();
+    var cyclesCleared = [];
+    cycles.forEach(cycle => {
+        var isExists = false;
+        for (var i = 0; i < cyclesCleared.length; i++) {
+            var cycleSorted = sort(cycle);
+            var cycleToCheckSorted = sort(cyclesCleared[i]);
+            if (equals(cycleSorted, cycleToCheckSorted)) {
+                isExists = true;
+            }
+        }
+        if (!isExists) {
+            cyclesCleared.push(cycle);
+        }
+    });
+    return cyclesCleared;
 }
 
-function findCyclesRecursive(point,cycle,cycles,statuses,points){
-    statuses[point.element.id]=1;
-    point.children.forEach(child=>{
-        var childStatus=statuses[child.id];
-        cycle.push(point.element);
-        console.log(childStatus);
-        if(childStatus===0){
-            var newPoint=points.filter(p=>child.id===p.element.id)[0];
-            findCyclesRecursive(newPoint,cycle,cycles,statuses,points);
+
+function sort(arr) {
+    return arr.concat().sort();
+}
+
+function equals(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+    for (var i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+            return false;
         }
-        if(childStatus===1){
-            cycles.push(cycle);
-        }
-    });
-    statuses[point.element.id]=2;
+    }
+    return true;
 }
 
 $("#stopLoops").on('click', function () {
@@ -93,15 +106,11 @@ $('#loops').on('change', function () {
     graph.fromJSON(historyOfGraph[historyOfGraph.length - 1]);
     if (value !== 'none') {
         var cycles = findCycles();
-        console.log(cycles);
         var elements = cycles[value];
         elements.push(elements[0]);
-        console.log(elements);
         var links = graph.getLinks();
         var neededLinks = findLinks(elements);
-        console.log(neededLinks.length);
         var otherLinks = getLinksToGreyColor(links, neededLinks);
-        console.log(otherLinks.length);
         otherLinks.forEach(function (elem) {
             elem.attr('.marker-target/fill', GREY);
             elem.attr('.marker-target/stroke', GREY);
@@ -117,15 +126,14 @@ $('#loops').on('change', function () {
 
 function findLinks(elements) {
     var neededLinks = [];
-    for (var i = 0; i < elements.length-1; i++) {
+    for (var i = 0; i < elements.length - 1; i++) {
         var start = graph.getCell(elements[i]);
         var end = graph.getCell(elements[i + 1]);
-        var outboundLinks = graph.getConnectedLinks(end, { outbound: true });
-        var inboundLinks = graph.getConnectedLinks(start, { inbound:true });
-        outboundLinks.forEach(link=>{
-            var linkToAdd=inboundLinks.filter(outLink=>outLink.id===link.id);
-            linkToAdd.forEach(add =>  neededLinks.push(add.id));
-            console.log(neededLinks);
+        var outboundLinks = graph.getConnectedLinks(start, {outbound: true});
+        var inboundLinks = graph.getConnectedLinks(end, {inbound: true});
+        outboundLinks.forEach(link => {
+            var linkToAdd = inboundLinks.filter(outLink => outLink.id === link.id);
+            linkToAdd.forEach(add => neededLinks.push(add.id));
         })
     }
 
@@ -133,10 +141,8 @@ function findLinks(elements) {
 }
 
 function getLinksToGreyColor(links, neededLinks) {
-    console.log(neededLinks);
     var otherLinks = [];
     links.forEach(function (link) {
-        console.log(link);
         if (!neededLinks.includes(link.id)) {
             otherLinks.push(link);
         }
