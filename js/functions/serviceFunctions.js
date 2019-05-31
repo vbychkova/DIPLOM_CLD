@@ -16,7 +16,7 @@ function customizeLinks(element, color, type, time) {
     element.attr('.connection/stroke', color);
 }
 
-function setSelectedLinkType(element) {
+function getSelectedLinkType(element) {
     var sign=element.label(0).attrs.text.text;
     var timeFlag=element.label(1).attrs.text.text;
     if(sign=="+"){
@@ -36,7 +36,7 @@ function setSelectedLinkType(element) {
     return POSITIVE_LINK_VALUE;
 }
 
-function setSelectedLoopType(element,text) {
+function getSelectedLoopType(element, text) {
     if(text.startsWith(BALANCE_LOOP_PREFIX)){
         if(element.attr("image/xlink:href")==CLOCKWISE_LINK){
             return BALANCE_LOOP_CLOCKWISE;

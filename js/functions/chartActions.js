@@ -14,7 +14,7 @@ document.onkeydown = function KeyPress(e) {
 $(document).on('click', '.labels', function () {
     var elemId = $(this).parent()[0].getAttribute("model-id");
     var currElement = graph.getCell(elemId);
-    var type=setSelectedLinkType(currElement);
+    var type=getSelectedLinkType(currElement);
     var checked=clickToRadioInfo(type);
     bootbox.dialog({
         message: "<p>Управление Связями</p> " +
@@ -56,7 +56,7 @@ $(document).on('click', '.labels', function () {
 
         }
     });
-    $("#selectLink").val(setSelectedLinkType(currElement));
+    $("#selectLink").val(getSelectedLinkType(currElement));
 });
 
 $('.select').click(function () {
@@ -345,7 +345,7 @@ $(document).on('dblclick', '.index', function () {
             }
         }
     });
-    $("#selectLoopChange").val(setSelectedLoopType(currElement, textLabel));
+    $("#selectLoopChange").val(getSelectedLoopType(currElement, textLabel));
 });
 
 function changeNumeration(textLabel) {

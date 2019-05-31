@@ -36,11 +36,35 @@ $("#watchLoops").on('click', function () {
     $('#watchHistory').css("display", "none");
     $('#stopLoops').css("display", "block");
     $('#loops').css("display", "block");
-    for (var i = 0; i < findCycles().length; i++) {
-        $('#loops').append('<option class="loop" value="' + (i) + '">' + (i + 1) + '</option>');
+    var cycles = findCycles();
+    var rIndex = 1;
+    var bIndex = 1;
+    for (var i = 0; i < cycles.length; i++) {
+        var type = recognizeCycleType(cycles[i]);
+        if(type==="R"){
+            $('#loops').append('<option class="loop" value="' + (i) + '">R ' + (rIndex) + '</option>');
+            rIndex++;
+        }
+        else {
+            $('#loops').append('<option class="loop" value="' + (i) + '">B ' + (bIndex) + '</option>');
+            bIndex++;
+        }
+
     }
 
 });
+
+function recognizeCycleType(elements) {
+    elements.push(elements[0]);
+    var count=countLinksForRecognizeLoopType(elements);
+    var minusCount=count["-"];
+    if(minusCount%2===0 || minusCount===0){
+        return "R";
+    }
+    else {
+        return "B";
+    }
+}
 
 function findCycles() {
     var allCells = graph.getElements();
@@ -121,8 +145,8 @@ $('#loops').on('change', function () {
             elem.attr('.connection/stroke', GREY);
             elem.attr('.connection/opacity', '0.4');
 
-            elem.label(0, {attrs: {text: { fill: GREY}}});
-            elem.label(1, {attrs: {text: { fill: GREY}}});
+            elem.label(0, {attrs: {text: {fill: GREY}}});
+            elem.label(1, {attrs: {text: {fill: GREY}}});
         });
     }
 });
@@ -141,6 +165,22 @@ function findLinks(elements) {
     }
 
     return neededLinks;
+}
+
+function countLinksForRecognizeLoopType(elements) {
+    var plusCount = 0;
+    var minusCount = 0;
+    var links=findLinks(elements);
+    links.forEach(id=>{
+        var link=graph.getCell(id);
+        var type = getSelectedLinkType(link);
+        if (type === POSITIVE_BY_TIME_LINK_VALUE || type === POSITIVE_LINK_VALUE) {
+            plusCount++;
+        } else {
+            minusCount++;
+        }
+    });
+    return {"+": plusCount,"-": minusCount};
 }
 
 function getLinksToGreyColor(links, neededLinks) {
