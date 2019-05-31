@@ -120,6 +120,9 @@ $('#loops').on('change', function () {
             elem.attr('.connection/stroke-width', '1');
             elem.attr('.connection/stroke', GREY);
             elem.attr('.connection/opacity', '0.4');
+
+            elem.label(0, {attrs: {text: { fill: GREY}}});
+            elem.label(1, {attrs: {text: { fill: GREY}}});
         });
     }
 });
