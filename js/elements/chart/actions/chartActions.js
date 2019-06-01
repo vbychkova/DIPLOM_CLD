@@ -1,5 +1,5 @@
 document.onkeydown = function KeyPress(e) {
-    var evtObj = window.event ? event : e;
+    const evtObj = window.event ? event : e;
     if (evtObj.keyCode == 90 && evtObj.ctrlKey) {
         commandManager.undo();
         setHistory();
@@ -12,10 +12,10 @@ document.onkeydown = function KeyPress(e) {
 };
 
 $(document).on('click', '.labels', function () {
-    var elemId = $(this).parent()[0].getAttribute("model-id");
-    var currElement = graph.getCell(elemId);
-    var type=getSelectedLinkType(currElement);
-    var checked=clickToRadioInfo(type);
+    const elemId = $(this).parent()[0].getAttribute("model-id");
+    const currElement = graph.getCell(elemId);
+    const type=getSelectedLinkType(currElement);
+    const checked=clickToRadioInfo(type);
     bootbox.dialog({
         message: "<p>Управление Связями</p> " +
             " <div class=\"form-group\">\n" +
@@ -48,7 +48,7 @@ $(document).on('click', '.labels', function () {
                 label: "Сохранить",
                 className: 'btn-primary',
                 callback: function () {
-                    var selectedOption = $('.select').toArray().filter(getClickedRadioButton)[0].id;
+                    const selectedOption = $('.select').toArray().filter(getClickedRadioButton)[0].id;
                     setTypeOfLink(currElement, selectedOption);
                     setHistory();
                 }
@@ -60,8 +60,8 @@ $(document).on('click', '.labels', function () {
 });
 
 $('.select').click(function () {
-    var elem =$(this);
-    var elems=$('.select').toArray();
+    const elem =$(this);
+    const elems=$('.select').toArray();
     elems.forEach(function (element) {
         if(element.id!== elem){
             element.checked=false;
@@ -73,7 +73,7 @@ function getClickedRadioButton(value) {
 }
 
 function clickToRadioInfo(type) {
-    var elems=['','','',''];
+    const elems=['','','',''];
     if(type===POSITIVE_LINK_VALUE){
         elems[0]='checked';
     }
@@ -112,9 +112,9 @@ function setTypeOfLink(element, selectedOption) {
 
 
 $(document).on('dblclick', '.text', function () {
-    var textLabel = $(this).text();
-    var elemId = $(this).parent().parent()[0].getAttribute("model-id");
-    var currElement = graph.getCell(elemId);
+    const textLabel = $(this).text();
+    const elemId = $(this).parent().parent()[0].getAttribute("model-id");
+    const currElement = graph.getCell(elemId);
     bootbox.dialog({
         message: "<p>Что вы хотите сделать?</p>",
         buttons: {
@@ -153,16 +153,16 @@ $(document).on('dblclick', '.text', function () {
 
 
 paper.on('blank:pointerdblclick', function (evt, x, y) {
-    var classOfTarget = evt.target.getAttribute("class");
+    const classOfTarget = evt.target.getAttribute("class");
     if (classOfTarget != 'svg-pan-zoom-control-element' && classOfTarget != 'svg-pan-zoom-control-background') {
         createBox(x, y);
     }
 });
 
 paper.on('blank:pointerclick', function (evt, x, y) {
-    var svg = document.getElementsByTagName('svg')[0];
-    var classSVG = svg.getAttribute("class");
-    var classOfTarget = evt.target.getAttribute("class");
+    const svg = document.getElementsByTagName('svg')[0];
+    const classSVG = svg.getAttribute("class");
+    const classOfTarget = evt.target.getAttribute("class");
 
     if (classOfTarget != 'rectangleElement' && classOfTarget != 'linkElement'
         && classOfTarget != 'loopElement' && classOfTarget != 'refreshElement' && classOfTarget != 'clearElement') {
@@ -220,7 +220,7 @@ function createLoop(x, y) {
                 label: "Создать цикл",
                 className: 'btn-success',
                 callback: function () {
-                    var selectedOption = $('#selectLoopCreate').val();
+                    const selectedOption = $('#selectLoopCreate').val();
                     createLoopSecondStep(x, y, selectedOption);
                 }
             }
@@ -256,13 +256,13 @@ function createLoopSecondStep(x, y, selectedOption) {
 
 
 $(document).on('click', '.text', function () {
-    var svg = document.getElementsByTagName('svg')[0];
-    var classSVG = svg.getAttribute("class");
-    var elemId = $(this).parent().parent()[0].getAttribute("model-id");
+    const svg = document.getElementsByTagName('svg')[0];
+    const classSVG = svg.getAttribute("class");
+    const elemId = $(this).parent().parent()[0].getAttribute("model-id");
 
     if (classSVG == 'linkAdd') {
         if (!bufferFlag) {
-            var linkView = paper.getDefaultLink()
+            const linkView = paper.getDefaultLink()
                 .set({
                     'source': {id: elemId},
                     'target': {id: elemId}
@@ -282,7 +282,7 @@ $(document).on('click', '.text', function () {
 
 
             function onDrag(evt) {
-                var p = evt.data.paper.snapToGrid({
+                const p = evt.data.paper.snapToGrid({
                     x: evt.clientX,
                     y: evt.clientY
                 });
@@ -304,9 +304,9 @@ $(document).on('click', '.text', function () {
 
 
 $(document).on('dblclick', '.index', function () {
-    var textLabel = $(this).text();
-    var elemId = $(this).parent().parent()[0].getAttribute("model-id");
-    var currElement = graph.getCell(elemId);
+    const textLabel = $(this).text();
+    const elemId = $(this).parent().parent()[0].getAttribute("model-id");
+    const currElement = graph.getCell(elemId);
     bootbox.dialog({
         message: "<p>Выберите тип цикла:</p>" +
             " <div class=\"form-group\">\n" +
@@ -322,8 +322,8 @@ $(document).on('dblclick', '.index', function () {
                 label: "Изменить цикл",
                 className: 'btn-success',
                 callback: function () {
-                    var position = currElement.get('position');
-                    var selectedOption = $('#selectLoopChange').val();
+                    const position = currElement.get('position');
+                    const selectedOption = $('#selectLoopChange').val();
                     graph.removeCells(currElement);
                     changeNumeration(textLabel);
                     changeCounters(textLabel);
@@ -349,9 +349,9 @@ $(document).on('dblclick', '.index', function () {
 });
 
 function changeNumeration(textLabel) {
-    var elements = [];
+    const elements = [];
     graph.getElements().forEach(elem => {
-        var textVal = elem.attributes.attrs.text.text.charAt(0);
+        const textVal = elem.attributes.attrs.text.text.charAt(0);
         if (textVal !== undefined && textVal == textLabel.charAt(0)) {
             elements.push(elem);
         }
@@ -360,9 +360,9 @@ function changeNumeration(textLabel) {
     elements
         .filter(e => parseInt(e.attributes.attrs.text.text.substr(2)) > parseInt(textLabel.substr(2)))
         .forEach(function (e) {
-            var label = e.attributes.attrs.text.text;
-            var prefix = label.charAt(0);
-            var num = parseInt(label.substr(2));
+            const label = e.attributes.attrs.text.text;
+            const prefix = label.charAt(0);
+            let num = parseInt(label.substr(2));
             num--;
             e.attr(".index/text", prefix + " " + num);
         });
@@ -380,7 +380,7 @@ function changeCounters(label) {
 
 function state(x, y, label) {
 
-    var cell = new joint.shapes.fsa.State({
+    const cell = new joint.shapes.fsa.State({
         position: {x: x, y: y},
         size: {width: setSize(label), height: 9},
         attrs: {text: {text: label}}
@@ -391,7 +391,7 @@ function state(x, y, label) {
 
 function loop(x, y, label, link) {
 
-    var cell = new joint.shapes.fsa.Loop({
+    const cell = new joint.shapes.fsa.Loop({
         position: {x: x, y: y},
         attrs: {
             image: {"xlink:href": link},
@@ -405,7 +405,7 @@ function loop(x, y, label, link) {
 }
 
 function link(source, target, color, label, time) {
-    var cell = new joint.shapes.fsa.Arrow({
+    const cell = new joint.shapes.fsa.Arrow({
         source: {id: source.id},
         target: {id: target.id},
         labels: [{

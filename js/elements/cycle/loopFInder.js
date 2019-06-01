@@ -3,17 +3,17 @@ function Graph() {
     this.arrows = new Map();
 }
 Graph.prototype.findCycles = function findCycles() {
-    var startNode;
-    var stack = [];
-    var cycles = [];
-    var blocked = new Map();
+    let startNode;
+    const stack = [];
+    const cycles = [];
+    const blocked = new Map();
 
-    var b = new Map();
+    const b = new Map();
 
-    var graph = this;
+    const graph = this;
 
     function addCycle(start, stack) {
-        var orders = [start.order].concat(
+        const orders = [start.order].concat(
             stack.map(function(n) {
                 return n.order;
             })
@@ -38,7 +38,7 @@ Graph.prototype.findCycles = function findCycles() {
     }
 
     function cycle(node) {
-        var found = false;
+        let found = false;
 
         stack.push(node);
         blocked.set(node, true);
@@ -58,7 +58,7 @@ Graph.prototype.findCycles = function findCycles() {
             unblock(node);
         } else {
             graph.arrows.get(node).forEach(function(w) {
-                var entry = b.get(w);
+                let entry = b.get(w);
 
                 if (!entry) {
                     entry = new Set();

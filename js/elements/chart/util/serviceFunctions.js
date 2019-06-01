@@ -1,5 +1,5 @@
 function setSize(label) {
-    var size = 10 * label.length;
+    let size = 10 * label.length;
 
     if (size < 20) {
         size = 20;
@@ -17,8 +17,8 @@ function customizeLinks(element, color, type, time) {
 }
 
 function getSelectedLinkType(element) {
-    var sign=element.label(0).attrs.text.text;
-    var timeFlag=element.label(1).attrs.text.text;
+    const sign=element.label(0).attrs.text.text;
+    const timeFlag=element.label(1).attrs.text.text;
     if(sign=="+"){
         if(timeFlag=="∥"){
             return POSITIVE_BY_TIME_LINK_VALUE;

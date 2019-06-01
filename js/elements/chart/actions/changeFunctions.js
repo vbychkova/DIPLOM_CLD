@@ -1,6 +1,6 @@
 "use strict";
-var slider = document.getElementById('historyRange');
-var box = document.getElementById("box");
+const slider = document.getElementById('historyRange');
+const box = document.getElementById("box");
 
 
 slider.onchange = function () {
@@ -36,11 +36,11 @@ $("#watchLoops").on('click', function () {
     $('#watchHistory').css("display", "none");
     $('#stopLoops').css("display", "block");
     $('#loops').css("display", "block");
-    var cycles = findCycles();
-    var rIndex = 1;
-    var bIndex = 1;
-    for (var i = 0; i < cycles.length; i++) {
-        var type = recognizeCycleType(cycles[i]);
+    const cycles = findCycles();
+    let rIndex = 1;
+    let bIndex = 1;
+    for (let i = 0; i < cycles.length; i++) {
+        const type = recognizeCycleType(cycles[i]);
         if(type==="R"){
             $('#loops').append('<option class="loop" value="' + (i) + '">R ' + (rIndex) + '</option>');
             rIndex++;
@@ -56,8 +56,8 @@ $("#watchLoops").on('click', function () {
 
 function recognizeCycleType(elements) {
     elements.push(elements[0]);
-    var count=countLinksForRecognizeLoopType(elements);
-    var minusCount=count["-"];
+    const count=countLinksForRecognizeLoopType(elements);
+    const minusCount=count["-"];
     if(minusCount%2===0 || minusCount===0){
         return "R";
     }
@@ -67,26 +67,26 @@ function recognizeCycleType(elements) {
 }
 
 function findCycles() {
-    var allCells = graph.getElements();
-    var cGraph = new Graph();
+    const allCells = graph.getElements();
+    const cGraph = new Graph();
     allCells.forEach(elem => {
-        var id = elem.id;
+        const id = elem.id;
         cGraph.nodes.push(id);
-        var arrows = [];
+        const arrows = [];
 
-        var outboundLinks = graph.getConnectedLinks(elem, {outbound: true});
+        const outboundLinks = graph.getConnectedLinks(elem, {outbound: true});
         outboundLinks.forEach(link => {
             arrows.push(link.get("target").id);
         });
         cGraph.arrows.set(id, arrows);
     });
-    var cycles = cGraph.findCycles();
-    var cyclesCleared = [];
+    const cycles = cGraph.findCycles();
+    const cyclesCleared = [];
     cycles.forEach(cycle => {
-        var isExists = false;
-        for (var i = 0; i < cyclesCleared.length; i++) {
-            var cycleSorted = sort(cycle);
-            var cycleToCheckSorted = sort(cyclesCleared[i]);
+        let isExists = false;
+        for (let i = 0; i < cyclesCleared.length; i++) {
+            const cycleSorted = sort(cycle);
+            const cycleToCheckSorted = sort(cyclesCleared[i]);
             if (equals(cycleSorted, cycleToCheckSorted)) {
                 isExists = true;
             }
@@ -107,7 +107,7 @@ function equals(arr1, arr2) {
     if (arr1.length !== arr2.length) {
         return false;
     }
-    for (var i = 0; i < arr1.length; i++) {
+    for (let i = 0; i < arr1.length; i++) {
         if (arr1[i] !== arr2[i]) {
             return false;
         }
@@ -126,15 +126,15 @@ $("#stopLoops").on('click', function () {
 });
 
 $('#loops').on('change', function () {
-    var value = this.value;
+    const value = this.value;
     graph.fromJSON(historyOfGraph[historyOfGraph.length - 1]);
     if (value !== 'none') {
-        var cycles = findCycles();
-        var elements = cycles[value];
+        const cycles = findCycles();
+        const elements = cycles[value];
         elements.push(elements[0]);
-        var links = graph.getLinks();
-        var neededLinks = findLinks(elements);
-        var otherLinks = getLinksToGreyColor(links, neededLinks);
+        const links = graph.getLinks();
+        const neededLinks = findLinks(elements);
+        const otherLinks = getLinksToGreyColor(links, neededLinks);
         otherLinks.forEach(function (elem) {
             elem.attr('.marker-target/fill', GREY);
             elem.attr('.marker-target/stroke', GREY);
@@ -152,14 +152,14 @@ $('#loops').on('change', function () {
 });
 
 function findLinks(elements) {
-    var neededLinks = [];
-    for (var i = 0; i < elements.length - 1; i++) {
-        var start = graph.getCell(elements[i]);
-        var end = graph.getCell(elements[i + 1]);
-        var outboundLinks = graph.getConnectedLinks(start, {outbound: true});
-        var inboundLinks = graph.getConnectedLinks(end, {inbound: true});
+    const neededLinks = [];
+    for (let i = 0; i < elements.length - 1; i++) {
+        const start = graph.getCell(elements[i]);
+        const end = graph.getCell(elements[i + 1]);
+        const outboundLinks = graph.getConnectedLinks(start, {outbound: true});
+        const inboundLinks = graph.getConnectedLinks(end, {inbound: true});
         outboundLinks.forEach(link => {
-            var linkToAdd = inboundLinks.filter(outLink => outLink.id === link.id);
+            const linkToAdd = inboundLinks.filter(outLink => outLink.id === link.id);
             linkToAdd.forEach(add => neededLinks.push(add.id));
         })
     }
@@ -168,12 +168,12 @@ function findLinks(elements) {
 }
 
 function countLinksForRecognizeLoopType(elements) {
-    var plusCount = 0;
-    var minusCount = 0;
-    var links=findLinks(elements);
+    let plusCount = 0;
+    let minusCount = 0;
+    const links=findLinks(elements);
     links.forEach(id=>{
-        var link=graph.getCell(id);
-        var type = getSelectedLinkType(link);
+        const link=graph.getCell(id);
+        const type = getSelectedLinkType(link);
         if (type === POSITIVE_BY_TIME_LINK_VALUE || type === POSITIVE_LINK_VALUE) {
             plusCount++;
         } else {
@@ -184,7 +184,7 @@ function countLinksForRecognizeLoopType(elements) {
 }
 
 function getLinksToGreyColor(links, neededLinks) {
-    var otherLinks = [];
+    const otherLinks = [];
     links.forEach(function (link) {
         if (!neededLinks.includes(link.id)) {
             otherLinks.push(link);

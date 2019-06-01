@@ -2,13 +2,13 @@ $(document).on('click', '.downloadButton', function () {
     bootbox.prompt("Введите имя файла для сохранения",
         function(result){
             if (result) {
-                var obj = graph.toJSON();
-                var elements=[];
+                const obj = graph.toJSON();
+                const elements=[];
                 elements.push(obj);
                 elements.push({rLoop:reinforcementLoopCounter,bLoop:balanceLoopCounter});
                 elements.push({history: historyOfGraph});
-                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(elements));
-                var elem=$("<a></a>")
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(elements));
+                const elem=$("<a></a>")
                     .attr("class","downloadHref")
                     .attr("href",dataStr)
                     .attr("download",result + ".json")
@@ -22,7 +22,7 @@ $(document).on('click', '.downloadButton', function () {
 });
 
 $(document).on('click', '.uploadButton', function () {
-    var elem=$("<input/>")
+    const elem=$("<input/>")
         .attr("name","uploadInput")
         .attr("type","file")
         .attr("class","uploadInput")
@@ -33,16 +33,16 @@ $(document).on('click', '.uploadButton', function () {
 
 
 $(document).on('change', '.uploadInput', function () {
-    var elem=$(".uploadInput")[0];
-    var files=elem.files;
+    const elem=$(".uploadInput")[0];
+    const files=elem.files;
     if (files.length == 1) {
 
-        var fr = new FileReader();
+        const fr = new FileReader();
 
         fr.onload = function (e) {
             try {
-                var result = JSON.parse(e.target.result);
-                var formatted = JSON.stringify(result[0]);
+                const result = JSON.parse(e.target.result);
+                const formatted = JSON.stringify(result[0]);
                 graph.fromJSON(JSON.parse(formatted));
                 balanceLoopCounter=result[1].bLoop;
                 reinforcementLoopCounter=result[1].rLoop;

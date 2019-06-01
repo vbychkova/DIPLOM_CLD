@@ -1,15 +1,15 @@
 $(document).on('click', '.rectangleElement', function () {
-    var svg = document.getElementsByTagName('svg')[0];
+    const svg = document.getElementsByTagName('svg')[0];
     svg.setAttribute("class","rectangleAdd");
 });
 
 $(document).on('click', '.linkElement', function () {
-    var svg = document.getElementsByTagName('svg')[0];
+    const svg = document.getElementsByTagName('svg')[0];
     svg.setAttribute("class","linkAdd");
 });
 
 $(document).on('click', '.loopElement', function () {
-    var svg = document.getElementsByTagName('svg')[0];
+    const svg = document.getElementsByTagName('svg')[0];
     svg.setAttribute("class","loopAdd");
 });
 
@@ -24,6 +24,6 @@ $('svg').on("contextmenu", function(e)
 
 
 function deleteCursor() {
-    var svg = document.getElementsByTagName('svg')[0];
+    const svg = document.getElementsByTagName('svg')[0];
     svg.removeAttribute("class");
 }

@@ -1,7 +1,7 @@
 
 function createDataPalette(x, y) {
-    var svg = document.getElementsByTagName('svg')[0];
-    var rectangle = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+    const svg = document.getElementsByTagName('svg')[0];
+    const rectangle = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
     rectangle.setAttribute("x",x);
     rectangle.setAttribute("y",y);
     rectangle.setAttribute("width",DATA_RECTANGLE_WIDTH);
@@ -10,7 +10,7 @@ function createDataPalette(x, y) {
     rectangle.style.strokeWidth = "2px";
     rectangle.style.fill="none";
 
-    var uploadImage=document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    const uploadImage=document.createElementNS("http://www.w3.org/2000/svg", 'image');
     uploadImage.setAttribute("x",x+2);
     uploadImage.setAttribute("y",y+2);
     uploadImage.setAttribute("width",DATA_RECTANGLE_IMAGE_SIZE);
@@ -18,7 +18,7 @@ function createDataPalette(x, y) {
     uploadImage.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/upload.svg");
     uploadImage.setAttribute("class","uploadButton");
 
-    var downloadImage=document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    const downloadImage=document.createElementNS("http://www.w3.org/2000/svg", 'image');
     downloadImage.setAttribute("x",x+6+DATA_RECTANGLE_IMAGE_SIZE);
     downloadImage.setAttribute("y",y+2);
     downloadImage.setAttribute("width",DATA_RECTANGLE_IMAGE_SIZE);
@@ -32,8 +32,8 @@ function createDataPalette(x, y) {
 }
 
 function createElementPalette(x, y) {
-    var svg = document.getElementsByTagName('svg')[0];
-    var rectangle = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+    const svg = document.getElementsByTagName('svg')[0];
+    const rectangle = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
     rectangle.setAttribute("x",x);
     rectangle.setAttribute("y",y);
     rectangle.setAttribute("width",ELEMENT_RECTANGLE_WIDTH);
@@ -42,7 +42,7 @@ function createElementPalette(x, y) {
     rectangle.style.strokeWidth = "2px";
     rectangle.style.fill="none";
 
-    var rectangleElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    const rectangleElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
     rectangleElement.setAttribute("x",x+2);
     rectangleElement.setAttribute("y",y+4);
     rectangleElement.setAttribute("width",DATA_RECTANGLE_IMAGE_SIZE);
@@ -50,7 +50,7 @@ function createElementPalette(x, y) {
     rectangleElement.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/rectangle.svg");
     rectangleElement.setAttribute("class","rectangleElement");
 
-    var linkElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    const linkElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
     linkElement.setAttribute("x",x+2);
     linkElement.setAttribute("y",y+8+DATA_RECTANGLE_IMAGE_SIZE);
     linkElement.setAttribute("width",DATA_RECTANGLE_IMAGE_SIZE);
@@ -58,7 +58,7 @@ function createElementPalette(x, y) {
     linkElement.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/link.svg");
     linkElement.setAttribute("class","linkElement");
 
-    var loopElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    const loopElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
     loopElement.setAttribute("x",x+2);
     loopElement.setAttribute("y",y+12+DATA_RECTANGLE_IMAGE_SIZE*2);
     loopElement.setAttribute("width",DATA_RECTANGLE_IMAGE_SIZE);
@@ -66,7 +66,7 @@ function createElementPalette(x, y) {
     loopElement.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/loop.svg");
     loopElement.setAttribute("class","loopElement");
 
-    var refresh=document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    const refresh=document.createElementNS("http://www.w3.org/2000/svg", 'image');
     refresh.setAttribute("x",x+2);
     refresh.setAttribute("y",y+16+DATA_RECTANGLE_IMAGE_SIZE*3);
     refresh.setAttribute("width",DATA_RECTANGLE_IMAGE_SIZE);
@@ -82,8 +82,8 @@ function createElementPalette(x, y) {
 }
 
 function createCleanPalette(x,y) {
-    var svg = document.getElementsByTagName('svg')[0];
-    var rectangle = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+    const svg = document.getElementsByTagName('svg')[0];
+    const rectangle = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
     rectangle.setAttribute("x",x);
     rectangle.setAttribute("y",y);
     rectangle.setAttribute("width",CLEAR_RECTANGLE_WIDTH);
@@ -92,7 +92,7 @@ function createCleanPalette(x,y) {
     rectangle.style.strokeWidth = "2px";
     rectangle.style.fill="none";
 
-    var clearElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    const clearElement=document.createElementNS("http://www.w3.org/2000/svg", 'image');
     clearElement.setAttribute("x",x+4);
     clearElement.setAttribute("y",y+4);
     clearElement.setAttribute("width",DATA_RECTANGLE_IMAGE_SIZE);
