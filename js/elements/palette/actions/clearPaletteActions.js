@@ -12,16 +12,16 @@ $(document).on('click', '.clearElement', function () {
             }
         },
         callback: function (result) {
-            if(result){
+            if (result) {
                 graph.clear();
-                balanceLoopCounter=1;
-                reinforcementLoopCounter=1;
-                bufferFlag=false;
-                historyOfGraph=[];
+                balanceLoopCounter = 1;
+                reinforcementLoopCounter = 1;
+                bufferFlag = false;
+                historyOfGraph = [];
                 $("#historyRange")
-                    .attr("max",0)
-                    .attr("value",0);
-                $("#box").attr("value",0);
+                    .attr("max", 0)
+                    .attr("value", 0);
+                $("#box").attr("value", 0);
             }
         }
     });
