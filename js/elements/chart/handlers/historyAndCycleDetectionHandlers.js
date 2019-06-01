@@ -11,21 +11,27 @@ $("#watchHistory").on('click', function () {
     $("#paper").addClass("disabledPaper");
     $('#watchLoops').css("display", "none");
     $('#watchHistory').css("display", "none");
-    $('#historyRange').css("display", "block");
-    $('#box').css("display", "block");
     $('#stopHistory').css("display", "inline");
-
+    $("#historyRange")
+        .css("display", "block")
+        .attr("max", historyOfGraph.length - 1)
+        .val(historyOfGraph.length - 1);
+    $("#box")
+        .css("display", "block")
+        .val(historyOfGraph.length - 1);
 });
 
 $("#stopHistory").on('click', function () {
     $("#paper").removeClass("disabledPaper");
-    $("#historyRange").attr("value", historyOfGraph.length - 1);
-    $("#box").attr("value", historyOfGraph.length - 1);
+    $("#historyRange")
+        .val(historyOfGraph.length - 1)
+        .css("display", "none");
+    $("#box")
+        .val(historyOfGraph.length - 1)
+        .css("display", "none");
+    $('#stopHistory').css("display", "none");
     $('#watchHistory').css("display", "inline-block");
     $('#watchLoops').css("display", "inline-block");
-    $('#historyRange').css("display", "none");
-    $('#box').css("display", "none");
-    $('#stopHistory').css("display", "none");
     graph.fromJSON(historyOfGraph[historyOfGraph.length - 1])
 });
 

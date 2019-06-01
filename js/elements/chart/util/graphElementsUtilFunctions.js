@@ -7,11 +7,12 @@ function setSize(label) {
 }
 
 function customizeLinks(element, color, type, time) {
-    element.label(0, {attrs: {text: {text: type, fill: color}}});
-    element.label(1, {attrs: {text: {text: time, fill: color}}});
-    element.attr('.marker-target/fill', color);
-    element.attr('.marker-target/stroke', color);
-    element.attr('.connection/stroke', color);
+    element
+        .label(0, {attrs: {text: {text: type, fill: color}}})
+        .label(1, {attrs: {text: {text: time, fill: color}}})
+        .attr('.marker-target/fill', color)
+        .attr('.marker-target/stroke', color)
+        .attr('.connection/stroke', color);
 }
 
 function getSelectedLinkType(element) {
@@ -84,6 +85,7 @@ function setTypeOfLink(element, selectedOption) {
             break;
     }
 }
+
 function changeNumeration(textLabel) {
     const elements = [];
     graph.getElements().forEach(elem => {
@@ -113,9 +115,6 @@ function changeCounters(label) {
 
 function setHistory() {
     historyOfGraph.push(graph.toJSON());
-    $("#historyRange").attr("max",historyOfGraph.length-1);
-    $("#historyRange").attr("value",historyOfGraph.length-1);
-    $("#box").attr("value",historyOfGraph.length-1);
 }
 
 function onDrag(evt) {
