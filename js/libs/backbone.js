@@ -1463,7 +1463,7 @@
   // Backbone.Router
   // ---------------
 
-  // Routers map faux-URLs to actions, and fire events when routes are
+  // Routers map faux-URLs to handlers, and fire events when routes are
   // matched. Creating a new one sets its `routes` hash, if not set statically.
   var Router = Backbone.Router = function(options) {
     options || (options = {});
