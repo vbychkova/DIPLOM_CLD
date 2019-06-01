@@ -68,7 +68,7 @@
   // form param named `model`.
   Backbone.emulateJSON = false;
 
-  // Proxy Backbone class methods to Underscore functions, wrapping the model's
+  // Proxy Backbone class methods to Underscore elements, wrapping the model's
   // `attributes` object or collection's `models` array behind the scenes.
   //
   // collection.filter(function(model) { return model.get('age') > 10 });

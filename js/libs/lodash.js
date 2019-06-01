@@ -719,7 +719,7 @@
         objectProto = Object.prototype,
         stringProto = String.prototype;
 
-    /** Used to resolve the decompiled source of functions. */
+    /** Used to resolve the decompiled source of elements. */
     var fnToString = Function.prototype.toString;
 
     /** Used to check objects for own properties. */
@@ -793,7 +793,7 @@
 
     /**
      * Creates a `lodash` object which wraps `value` to enable implicit chaining.
-     * Methods that operate on and return arrays, collections, and functions can
+     * Methods that operate on and return arrays, collections, and elements can
      * be chained together. Methods that retrieve a single value or may return a
      * primitive value will automatically end the chain returning the unwrapped
      * value. Explicit chaining may be enabled using `_.chain`. The execution of
@@ -830,7 +830,7 @@
      * `defer`, `delay`, `difference`, `drop`, `dropRight`, `dropRightWhile`,
      * `dropWhile`, `fill`, `filter`, `flatten`, `flattenDeep`, `flow`, `flowRight`,
      * `forEach`, `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`,
-     * `functions`, `groupBy`, `indexBy`, `initial`, `intersection`, `invert`,
+     * `elements`, `groupBy`, `indexBy`, `initial`, `intersection`, `invert`,
      * `invoke`, `keys`, `keysIn`, `map`, `mapKeys`, `mapValues`, `matches`,
      * `matchesProperty`, `memoize`, `merge`, `method`, `methodOf`, `mixin`,
      * `modArgs`, `negate`, `omit`, `once`, `pairs`, `partial`, `partialRight`,
@@ -1550,7 +1550,7 @@
     /**
      * A specialized version of `_.assign` for customizing assigned values without
      * support for argument juggling, multiple sources, and `this` binding `customizer`
-     * functions.
+     * elements.
      *
      * @private
      * @param {Object} object The destination object.
@@ -1578,7 +1578,7 @@
 
     /**
      * The base implementation of `_.assign` without support for argument juggling,
-     * multiple sources, and `customizer` functions.
+     * multiple sources, and `customizer` elements.
      *
      * @private
      * @param {Object} object The destination object.
@@ -1671,7 +1671,7 @@
 
     /**
      * The base implementation of `_.clone` without support for argument juggling
-     * and `this` binding `customizer` functions.
+     * and `this` binding `customizer` elements.
      *
      * @private
      * @param {*} value The value to clone.
@@ -1997,7 +1997,7 @@
     /**
      * The base implementation of `baseForIn` and `baseForOwn` which iterates
      * over `object` properties returned by `keysFunc` invoking `iteratee` for
-     * each property. Iteratee functions may exit iteration early by explicitly
+     * each property. Iteratee elements may exit iteration early by explicitly
      * returning `false`.
      *
      * @private
@@ -2060,7 +2060,7 @@
     }
 
     /**
-     * The base implementation of `_.functions` which creates an array of
+     * The base implementation of `_.elements` which creates an array of
      * `object` function property names filtered from those provided.
      *
      * @private
@@ -2111,7 +2111,7 @@
 
     /**
      * The base implementation of `_.isEqual` without support for `this` binding
-     * `customizer` functions.
+     * `customizer` elements.
      *
      * @private
      * @param {*} value The value to compare.
@@ -2338,7 +2338,7 @@
 
     /**
      * The base implementation of `_.merge` without support for argument juggling,
-     * multiple sources, and `this` binding `customizer` functions.
+     * multiple sources, and `this` binding `customizer` elements.
      *
      * @private
      * @param {Object} object The destination object.
@@ -3475,7 +3475,7 @@
 
       function wrapper() {
         // Avoid `arguments` object use disqualifying optimizations by
-        // converting it to an array before providing it to other functions.
+        // converting it to an array before providing it to other elements.
         var length = arguments.length,
             index = length,
             args = Array(length);
@@ -4186,7 +4186,7 @@
      * may be applied regardless of execution order. Methods like `_.ary` and `_.rearg`
      * augment function arguments, making the order in which they are executed important,
      * preventing the merging of metadata. However, we make an exception for a safe
-     * common case where curried functions have `_.ary` and or `_.rearg` applied.
+     * common case where curried elements have `_.ary` and or `_.rearg` applied.
      *
      * @private
      * @param {Array} data The destination metadata.
@@ -4458,7 +4458,7 @@
      * @category Array
      * @param {Array} array The array to process.
      * @param {number} [size=1] The length of each chunk.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Array} Returns the new array containing chunks.
      * @example
      *
@@ -4544,7 +4544,7 @@
      * @category Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to drop.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
@@ -4579,7 +4579,7 @@
      * @category Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to drop.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
@@ -4887,7 +4887,7 @@
      * @category Array
      * @param {Array} array The array to flatten.
      * @param {boolean} [isDeep] Specify a deep flatten.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Array} Returns the new flattened array.
      * @example
      *
@@ -5368,7 +5368,7 @@
      * @category Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to take.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
@@ -5403,7 +5403,7 @@
      * @category Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to take.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
@@ -6419,7 +6419,7 @@
     /**
      * Iterates over elements of `collection` invoking `iteratee` for each element.
      * The `iteratee` is bound to `thisArg` and invoked with three arguments:
-     * (value, index|key, collection). Iteratee functions may exit iteration early
+     * (value, index|key, collection). Iteratee elements may exit iteration early
      * by explicitly returning `false`.
      *
      * **Note:** As with other "Collections" methods, objects with a "length" property
@@ -6532,7 +6532,7 @@
      * @param {Array|Object|string} collection The collection to search.
      * @param {*} target The value to search for.
      * @param {number} [fromIndex=0] The index to search from.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.reduce`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.reduce`.
      * @returns {boolean} Returns `true` if a matching element is found, else `false`.
      * @example
      *
@@ -6916,7 +6916,7 @@
      * @category Collection
      * @param {Array|Object|string} collection The collection to sample.
      * @param {number} [n] The number of elements to sample.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {*} Returns the random sample(s).
      * @example
      *
@@ -7181,7 +7181,7 @@
      * @param {Array|Object|string} collection The collection to iterate over.
      * @param {Function[]|Object[]|string[]} iteratees The iteratees to sort by.
      * @param {boolean[]} [orders] The sort orders of `iteratees`.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.reduce`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.reduce`.
      * @returns {Array} Returns the new sorted array.
      * @example
      *
@@ -7317,7 +7317,7 @@
      * @category Function
      * @param {Function} func The function to cap arguments for.
      * @param {number} [n=func.length] The arity cap.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Function} Returns the new function.
      * @example
      *
@@ -7379,7 +7379,7 @@
      * may be used as a placeholder for partially applied arguments.
      *
      * **Note:** Unlike native `Function#bind` this method does not set the "length"
-     * property of bound functions.
+     * property of bound elements.
      *
      * @static
      * @memberOf _
@@ -7420,7 +7420,7 @@
      * of method names. If no method names are provided all enumerable function
      * properties, own and inherited, of `object` are bound.
      *
-     * **Note:** This method does not set the "length" property of bound functions.
+     * **Note:** This method does not set the "length" property of bound elements.
      *
      * @static
      * @memberOf _
@@ -7459,7 +7459,7 @@
      * Creates a function that invokes the method at `object[key]` and prepends
      * any additional `_.bindKey` arguments to those provided to the bound function.
      *
-     * This method differs from `_.bind` by allowing bound functions to reference
+     * This method differs from `_.bind` by allowing bound elements to reference
      * methods that may be redefined or don't yet exist.
      * See [Peter Michaux's article](http://peter.michaux.ca/articles/lazy-function-definition-pattern)
      * for more details.
@@ -7518,14 +7518,14 @@
      * The `_.curry.placeholder` value, which defaults to `_` in monolithic builds,
      * may be used as a placeholder for provided arguments.
      *
-     * **Note:** This method does not set the "length" property of curried functions.
+     * **Note:** This method does not set the "length" property of curried elements.
      *
      * @static
      * @memberOf _
      * @category Function
      * @param {Function} func The function to curry.
      * @param {number} [arity=func.length] The arity of `func`.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Function} Returns the new curried function.
      * @example
      *
@@ -7557,14 +7557,14 @@
      * The `_.curryRight.placeholder` value, which defaults to `_` in monolithic
      * builds, may be used as a placeholder for provided arguments.
      *
-     * **Note:** This method does not set the "length" property of curried functions.
+     * **Note:** This method does not set the "length" property of curried elements.
      *
      * @static
      * @memberOf _
      * @category Function
      * @param {Function} func The function to curry.
      * @param {number} [arity=func.length] The arity of `func`.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Function} Returns the new curried function.
      * @example
      *
@@ -7805,7 +7805,7 @@
 
     /**
      * Creates a function that returns the result of invoking the provided
-     * functions with the `this` binding of the created function, where each
+     * elements with the `this` binding of the created function, where each
      * successive invocation is supplied the return value of the previous.
      *
      * @static
@@ -7827,7 +7827,7 @@
 
     /**
      * This method is like `_.flow` except that it creates a function that
-     * invokes the provided functions from right to left.
+     * invokes the provided elements from right to left.
      *
      * @static
      * @memberOf _
@@ -7926,8 +7926,8 @@
      * @memberOf _
      * @category Function
      * @param {Function} func The function to wrap.
-     * @param {...(Function|Function[])} [transforms] The functions to transform
-     * arguments, specified as individual functions or arrays of functions.
+     * @param {...(Function|Function[])} [transforms] The elements to transform
+     * arguments, specified as individual elements or arrays of elements.
      * @returns {Function} Returns the new function.
      * @example
      *
@@ -8022,7 +8022,7 @@
      * builds, may be used as a placeholder for partially applied arguments.
      *
      * **Note:** This method does not set the "length" property of partially
-     * applied functions.
+     * applied elements.
      *
      * @static
      * @memberOf _
@@ -8055,7 +8055,7 @@
      * builds, may be used as a placeholder for partially applied arguments.
      *
      * **Note:** This method does not set the "length" property of partially
-     * applied functions.
+     * applied elements.
      *
      * @static
      * @memberOf _
@@ -8297,7 +8297,7 @@
      * [structured clone algorithm](http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm).
      * The enumerable properties of `arguments` objects and objects created by
      * constructors other than `Object` are cloned to plain `Object` objects. An
-     * empty object is returned for uncloneable values such as functions, DOM nodes,
+     * empty object is returned for uncloneable values such as elements, DOM nodes,
      * Maps, Sets, and WeakMaps.
      *
      * @static
@@ -8361,7 +8361,7 @@
      * [structured clone algorithm](http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm).
      * The enumerable properties of `arguments` objects and objects created by
      * constructors other than `Object` are cloned to plain `Object` objects. An
-     * empty object is returned for uncloneable values such as functions, DOM nodes,
+     * empty object is returned for uncloneable values such as elements, DOM nodes,
      * Maps, Sets, and WeakMaps.
      *
      * @static
@@ -8716,7 +8716,7 @@
 
     /**
      * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
-     * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+     * (e.g. arrays, elements, objects, regexes, `new Number(0)`, and `new String('')`)
      *
      * @static
      * @memberOf _
@@ -9220,7 +9220,7 @@
      * @category Object
      * @param {Object} prototype The object to inherit from.
      * @param {Object} [properties] The properties to assign to the object.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Object} Returns the new object.
      * @example
      *
@@ -9395,7 +9395,7 @@
     /**
      * Iterates over own and inherited enumerable properties of an object invoking
      * `iteratee` for each property. The `iteratee` is bound to `thisArg` and invoked
-     * with three arguments: (value, key, object). Iteratee functions may exit
+     * with three arguments: (value, key, object). Iteratee elements may exit
      * iteration early by explicitly returning `false`.
      *
      * @static
@@ -9451,7 +9451,7 @@
     /**
      * Iterates over own enumerable properties of an object invoking `iteratee`
      * for each property. The `iteratee` is bound to `thisArg` and invoked with
-     * three arguments: (value, key, object). Iteratee functions may exit iteration
+     * three arguments: (value, key, object). Iteratee elements may exit iteration
      * early by explicitly returning `false`.
      *
      * @static
@@ -9516,7 +9516,7 @@
      * @returns {Array} Returns the new array of property names.
      * @example
      *
-     * _.functions(_);
+     * _.elements(_);
      * // => ['after', 'ary', 'assign', ...]
      */
     function functions(object) {
@@ -9602,7 +9602,7 @@
      * @category Object
      * @param {Object} object The object to invert.
      * @param {boolean} [multiValue] Allow multiple values per key.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Object} Returns the new inverted object.
      * @example
      *
@@ -9990,7 +9990,7 @@
      * `accumulator` object which is the result of running each of its own enumerable
      * properties through `iteratee`, with each invocation potentially mutating
      * the `accumulator` object. The `iteratee` is bound to `thisArg` and invoked
-     * with four arguments: (accumulator, value, key, object). Iteratee functions
+     * with four arguments: (accumulator, value, key, object). Iteratee elements
      * may exit iteration early by explicitly returning `false`.
      *
      * @static
@@ -10478,7 +10478,7 @@
      * @category String
      * @param {string} string The string to convert.
      * @param {number} [radix] The radix to interpret `value` by.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {number} Returns the converted integer.
      * @example
      *
@@ -10827,7 +10827,7 @@
      * @category String
      * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {string} Returns the trimmed string.
      * @example
      *
@@ -10861,7 +10861,7 @@
      * @category String
      * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {string} Returns the trimmed string.
      * @example
      *
@@ -10891,7 +10891,7 @@
      * @category String
      * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {string} Returns the trimmed string.
      * @example
      *
@@ -10926,7 +10926,7 @@
      * @param {number} [options.length=30] The maximum string length.
      * @param {string} [options.omission='...'] The string to indicate text is omitted.
      * @param {RegExp|string} [options.separator] The separator pattern to truncate to.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {string} Returns the truncated string.
      * @example
      *
@@ -11038,7 +11038,7 @@
      * @category String
      * @param {string} [string=''] The string to inspect.
      * @param {RegExp|string} [pattern] The pattern to match words.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Array} Returns the words of `string`.
      * @example
      *
@@ -11099,7 +11099,7 @@
      * @category Utility
      * @param {*} [func=_.identity] The value to convert to a callback.
      * @param {*} [thisArg] The `this` binding of `func`.
-     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+     * @param- {Object} [guard] Enables use as a callback for elements like `_.map`.
      * @returns {Function} Returns the callback.
      * @example
      *
@@ -11300,9 +11300,9 @@
      * @memberOf _
      * @category Utility
      * @param {Function|Object} [object=lodash] The destination object.
-     * @param {Object} source The object of functions to add.
+     * @param {Object} source The object of elements to add.
      * @param {Object} [options] The options object.
-     * @param {boolean} [options.chain=true] Specify whether the functions added
+     * @param {boolean} [options.chain=true] Specify whether the elements added
      *  are chainable.
      * @returns {Function|Object} Returns `object`.
      * @example
@@ -11828,19 +11828,19 @@
     LazyWrapper.prototype = baseCreate(baseLodash.prototype);
     LazyWrapper.prototype.constructor = LazyWrapper;
 
-    // Add functions to the `Map` cache.
+    // Add elements to the `Map` cache.
     MapCache.prototype['delete'] = mapDelete;
     MapCache.prototype.get = mapGet;
     MapCache.prototype.has = mapHas;
     MapCache.prototype.set = mapSet;
 
-    // Add functions to the `Set` cache.
+    // Add elements to the `Set` cache.
     SetCache.prototype.push = cachePush;
 
     // Assign cache to `_.memoize`.
     memoize.Cache = MapCache;
 
-    // Add functions that return wrapped values when chaining.
+    // Add elements that return wrapped values when chaining.
     lodash.after = after;
     lodash.ary = ary;
     lodash.assign = assign;
@@ -11965,12 +11965,12 @@
     lodash.tail = rest;
     lodash.unique = uniq;
 
-    // Add functions to `lodash.prototype`.
+    // Add elements to `lodash.prototype`.
     mixin(lodash, lodash);
 
     /*------------------------------------------------------------------------*/
 
-    // Add functions that return unwrapped values when chaining.
+    // Add elements that return unwrapped values when chaining.
     lodash.add = add;
     lodash.attempt = attempt;
     lodash.camelCase = camelCase;
@@ -12083,7 +12083,7 @@
 
     /*------------------------------------------------------------------------*/
 
-    // Add functions capable of returning wrapped and unwrapped values when chaining.
+    // Add elements capable of returning wrapped and unwrapped values when chaining.
     lodash.sample = sample;
 
     lodash.prototype.sample = function(n) {
@@ -12292,12 +12292,12 @@
 
     realNames[createHybridWrapper(undefined, BIND_KEY_FLAG).name] = [{ 'name': 'wrapper', 'func': undefined }];
 
-    // Add functions to the lazy wrapper.
+    // Add elements to the lazy wrapper.
     LazyWrapper.prototype.clone = lazyClone;
     LazyWrapper.prototype.reverse = lazyReverse;
     LazyWrapper.prototype.value = lazyValue;
 
-    // Add chaining functions to the `lodash` wrapper.
+    // Add chaining elements to the `lodash` wrapper.
     lodash.prototype.chain = wrapperChain;
     lodash.prototype.commit = wrapperCommit;
     lodash.prototype.concat = wrapperConcat;
