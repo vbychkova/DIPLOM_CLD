@@ -18,8 +18,9 @@ $(document).on('click', '.clearElement', function () {
                 reinforcementLoopCounter=1;
                 bufferFlag=false;
                 historyOfGraph=[];
-                $("#historyRange").attr("max",0);
-                $("#historyRange").attr("value",0);
+                $("#historyRange")
+                    .attr("max",0)
+                    .attr("value",0);
                 $("#box").attr("value",0);
             }
         }

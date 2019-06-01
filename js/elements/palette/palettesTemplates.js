@@ -6,7 +6,7 @@ function createDataPalette(x, y) {
     rectangle.setAttribute("y",y);
     rectangle.setAttribute("width",DATA_RECTANGLE_WIDTH);
     rectangle.setAttribute("height",DATA_RECTANGLE_HEIGHT);
-    rectangle.style.stroke = "#000";
+    rectangle.style.stroke = BORDER_COLOR;
     rectangle.style.strokeWidth = "2px";
     rectangle.style.fill="none";
 
@@ -38,7 +38,7 @@ function createElementPalette(x, y) {
     rectangle.setAttribute("y",y);
     rectangle.setAttribute("width",ELEMENT_RECTANGLE_WIDTH);
     rectangle.setAttribute("height",ELEMENT_RECTANGLE_HEIGHT);
-    rectangle.style.stroke = "#000";
+    rectangle.style.stroke = BORDER_COLOR;
     rectangle.style.strokeWidth = "2px";
     rectangle.style.fill="none";
 
@@ -88,7 +88,7 @@ function createCleanPalette(x,y) {
     rectangle.setAttribute("y",y);
     rectangle.setAttribute("width",CLEAR_RECTANGLE_WIDTH);
     rectangle.setAttribute("height",CLEAR_RECTANGLE_HEIGHT);
-    rectangle.style.stroke = "#000";
+    rectangle.style.stroke = BORDER_COLOR;
     rectangle.style.strokeWidth = "2px";
     rectangle.style.fill="none";
 
