@@ -1,21 +1,21 @@
-var graph = new joint.dia.Graph;
+const graph = new joint.dia.Graph;
 
-var historyOfGraph = [];
-var zoom;
-var bufferFlag = false;
-var balanceLoopCounter = 1;
-var reinforcementLoopCounter = 1;
-var width = $(window).width() - 60;
-var height = $(window).height() - 100;
-
-var paper = new joint.dia.Paper({
+let historyOfGraph = [];
+let zoom;
+let bufferFlag = false;
+let balanceLoopCounter = 1;
+let reinforcementLoopCounter = 1;
+const width = $(window).width() - 60;
+const height = $(window).height() - 100;
+let currentCycles=[];
+const paper = new joint.dia.Paper({
     el: $('#paper'),
     width: width,
     height: height,
     gridSize: 1,
     model: graph,
     defaultLink: function () {
-        var link = new joint.dia.Link({
+        const link = new joint.dia.Link({
 
             attrs: {
                 '.marker-target': {
@@ -74,7 +74,7 @@ var paper = new joint.dia.Paper({
     }
 });
 
-var commandManager = new joint.dia.CommandManager({graph: graph});
+const commandManager = new joint.dia.CommandManager({graph: graph});
 
 createDataPalette(10, height - 40);
 
@@ -82,9 +82,4 @@ createElementPalette(10, 30);
 
 createCleanPalette(10, 180);
 
-function findLoops(g) {
-    return _.filter(tarjan(g), function (cmpt) {
-        return cmpt.length > 1 || (cmpt.length === 1 && g.hasEdge(cmpt[0], cmpt[0]));
-    });
-}
 
