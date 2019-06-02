@@ -16,13 +16,10 @@ $(document).on('click', '.labels', function () {
             "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Положительная связь</label>\n" +
             "</div>\n" +
             "<div class=\"radio\">\n" +
-            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='2' " + checked[1] + ">Положительная связь проявляющаяся со временем</label>\n" +
-            "</div>" +
-            "<div class=\"radio\">\n" +
-            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' " + checked[2] + ">Отрицательная связь</label>\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' " + checked[1] + ">Отрицательная связь</label>\n" +
             "</div>\n" +
-            "<div class=\"radio\">\n" +
-            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='4' " + checked[3] + ">Отрицательная связь проявляющаяся со временем</label>\n" +
+            "<div class=\"checkbox\">\n" +
+            "  <label><input type=\"checkbox\" name=\"inTime\" class=\"inTime\" " + checked[2] + ">Cвязь проявляющаяся со временем</label>\n" +
             "</div>" +
             "</div> ",
         buttons: {

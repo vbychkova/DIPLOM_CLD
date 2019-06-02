@@ -48,23 +48,20 @@ function getSelectedLoopType(element, text) {
     }
 }
 
-function getClickedRadioButton(value) {
+function getClickedButton(value) {
     return value.checked;
 }
 
 function getStatusOfRadioButtonsInLinkMenu(type) {
-    const elems = ['', '', '', ''];
-    if (type === POSITIVE_LINK_VALUE) {
+    const elems = ['', '', ''];
+    if (type === POSITIVE_LINK_VALUE || type === POSITIVE_BY_TIME_LINK_VALUE) {
         elems[0] = 'checked';
     }
-    if (type === POSITIVE_BY_TIME_LINK_VALUE) {
+    if (type === NEGATIVE_LINK_VALUE || type === NEGATIVE_BY_TIME_LINK_VALUE) {
         elems[1] = 'checked';
     }
-    if (type === NEGATIVE_LINK_VALUE) {
+    if (type === POSITIVE_BY_TIME_LINK_VALUE || type === NEGATIVE_BY_TIME_LINK_VALUE) {
         elems[2] = 'checked';
-    }
-    if (type === NEGATIVE_BY_TIME_LINK_VALUE) {
-        elems[3] = 'checked';
     }
     return elems;
 }

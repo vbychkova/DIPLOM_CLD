@@ -1,3 +1,5 @@
+"use strict";
+
 function undoRedoAction(evtObj) {
     if (evtObj.keyCode === 90 && evtObj.ctrlKey) {
         commandManager.undo();
@@ -16,8 +18,10 @@ function deleteLinkAction(currElement) {
 }
 
 function saveLink(currElement) {
-    const selectedOption = $('.select').toArray().filter(getClickedRadioButton)[0].id;
-    setTypeOfLink(currElement, selectedOption);
+    const clickedType = $('.select').toArray().filter(getClickedButton)[0].id;
+    const clickedTime = $('.inTime')[0].checked ? 1 : 0;
+    const fullTypeOfLink = Number(clickedType) + Number(clickedTime);
+    setTypeOfLink(currElement, fullTypeOfLink.toString());
     setHistory();
 }
 
@@ -27,7 +31,7 @@ function deleteBlock(currElement) {
     setHistory();
 }
 
-function changeTextOfBlock(currElement,textLabel) {
+function changeTextOfBlock(currElement, textLabel) {
     bootbox.prompt({
         title: "Текст переменной",
         value: textLabel,
@@ -104,6 +108,7 @@ function createLoopSecondStep(x, y, selectedOption) {
             break;
     }
 }
+
 function connectLink(elemId) {
     const linkView = paper.getDefaultLink()
         .set({
@@ -124,7 +129,7 @@ function connectLink(elemId) {
     });
 }
 
-function saveCycle(currElement,textLabel) {
+function saveCycle(currElement, textLabel) {
     const position = currElement.get('position');
     const selectedOption = $('#selectLoopChange').val();
     graph.removeCells(currElement);
@@ -133,7 +138,7 @@ function saveCycle(currElement,textLabel) {
     createLoopSecondStep(position.x, position.y, selectedOption);
 }
 
-function deleteCycle(currElement,textLabel) {
+function deleteCycle(currElement, textLabel) {
     graph.removeCells(currElement);
     changeNumeration(textLabel);
     changeCounters(textLabel);
