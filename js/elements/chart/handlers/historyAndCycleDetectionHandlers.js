@@ -4,7 +4,7 @@ const box = document.getElementById("box");
 
 slider.onchange = function () {
     box.value = slider.value;
-    graph.fromJSON(historyOfGraph[slider.value])
+    graph.fromJSON(historyOfGraph[slider.value-1])
 };
 
 $("#watchHistory").on('click', function () {
@@ -14,20 +14,20 @@ $("#watchHistory").on('click', function () {
     $('#stopHistory').css("display", "inline");
     $("#historyRange")
         .css("display", "block")
-        .attr("max", historyOfGraph.length - 1)
-        .val(historyOfGraph.length - 1);
+        .attr("max", historyOfGraph.length)
+        .val(historyOfGraph.length);
     $("#box")
         .css("display", "block")
-        .val(historyOfGraph.length - 1);
+        .val(historyOfGraph.length);
 });
 
 $("#stopHistory").on('click', function () {
     $("#paper").removeClass("disabledPaper");
     $("#historyRange")
-        .val(historyOfGraph.length - 1)
+        .val(historyOfGraph.length)
         .css("display", "none");
     $("#box")
-        .val(historyOfGraph.length - 1)
+        .val(historyOfGraph.length)
         .css("display", "none");
     $('#stopHistory').css("display", "none");
     $('#watchHistory').css("display", "inline-block");
