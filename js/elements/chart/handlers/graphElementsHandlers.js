@@ -16,13 +16,10 @@ $(document).on('click', '.labels', function () {
             "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Положительная связь</label>\n" +
             "</div>\n" +
             "<div class=\"radio\">\n" +
-            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='2' " + checked[1] + ">Положительная связь проявляющаяся со временем</label>\n" +
-            "</div>" +
-            "<div class=\"radio\">\n" +
-            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' " + checked[2] + ">Отрицательная связь</label>\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' " + checked[1] + ">Отрицательная связь</label>\n" +
             "</div>\n" +
-            "<div class=\"radio\">\n" +
-            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='4' " + checked[3] + ">Отрицательная связь проявляющаяся со временем</label>\n" +
+            "<div class=\"checkbox\">\n" +
+            "  <label><input type=\"checkbox\" name=\"inTime\" class=\"inTime\" " + checked[2] + ">Cвязь проявляющаяся со временем</label>\n" +
             "</div>" +
             "</div> ",
         buttons: {
@@ -95,15 +92,14 @@ paper.on('blank:pointerclick', function (evt, x, y) {
     const classSVG = svg.getAttribute("class");
     const classOfTarget = evt.target.getAttribute("class");
 
-    if (classOfTarget != 'rectangleElement' && classOfTarget != 'linkElement'
-        && classOfTarget != 'loopElement' && classOfTarget != 'refreshElement' && classOfTarget != 'clearElement') {
+    if (classOfTarget !== 'rectangleElement' && classOfTarget !== 'linkElement'
+        && classOfTarget !== 'cycleElement' && classOfTarget !== 'refreshElement' && classOfTarget !== 'clearElement') {
         switch (classSVG) {
             case 'rectangleAdd':
                 createBox(x, y);
                 break;
-
-            case 'loopAdd':
-                createLoop(x, y);
+			case 'cycleAdd':
+                createCycleByType(x, y,BALANCE_CYCLE_CLOCKWISE);
                 break;
 
         }
@@ -131,25 +127,28 @@ $(document).on('dblclick', '.index', function () {
     const textLabel = $(this).text();
     const elemId = $(this).parent().parent()[0].getAttribute("model-id");
     const currElement = graph.getCell(elemId);
+    const type = getSelectedCycleType(currElement,textLabel);
+    const checked = getStatusOfRadioButtonsInCycleMenu(type);
     bootbox.dialog({
         message: "<p>Выберите тип цикла:</p>" +
-            " <div class=\"form-group\">\n" +
-            "  <select class=\"form-control\" id=\"selectLoopChange\">\n" +
-            "    <option value='1'>Балансирующий цикл по часовой</option>\n" +
-            "    <option value='2'>Балансирующий цикл против часовой</option>\n" +
-            "    <option value='3'>Усиливающий цикл по часовой</option>\n" +
-            "    <option value='4'>Усиливающий цикл против часовой</option>\n" +
-            "  </select>\n" +
-            "</div> ",
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Балансирующий цикл</label>\n" +
+            "</div>\n" +
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' " + checked[1] + ">Усиливающий цикл</label>\n" +
+            "</div>\n" +
+            "<div class=\"checkbox\">\n" +
+            "  <label><input type=\"checkbox\" name=\"inTime\" class=\"inTime\" " + checked[2] + "> Направление 'Против часовой'</label>\n" +
+            "</div>",
         buttons: {
-            updateLoop: {
+            updateCycle: {
                 label: "Изменить цикл",
                 className: 'btn-success',
                 callback: function () {
                     saveCycle(currElement, textLabel);
                 }
             },
-            deleteLoop: {
+            deleteCycle: {
                 label: "Удалить",
                 className: 'btn-danger',
                 callback: function () {
@@ -158,5 +157,5 @@ $(document).on('dblclick', '.index', function () {
             }
         }
     });
-    $("#selectLoopChange").val(getSelectedLoopType(currElement, textLabel));
+    $("#selectCycleChange").val(getSelectedCycleType(currElement, textLabel));
 });

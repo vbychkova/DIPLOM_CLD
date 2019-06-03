@@ -14,8 +14,8 @@ $(document).on('click', '.clearElement', function () {
         callback: function (result) {
             if (result) {
                 graph.clear();
-                balanceLoopCounter = 1;
-                reinforcementLoopCounter = 1;
+                balanceCycleCounter = 1;
+                reinforcementCycleCounter = 1;
                 bufferFlag = false;
                 historyOfGraph = [];
                 $("#historyRange")

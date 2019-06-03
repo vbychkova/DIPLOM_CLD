@@ -4,11 +4,11 @@ function buildSelectionForTheCycles() {
     let bIndex = 1;
     for (let i = 0; i < currentCycles.length; i++) {
         const type = recognizeCycleType(currentCycles[i]);
-        if (type === REINFORCEMENT_LOOP_PREFIX) {
-            $('#loops').append('<option class="loop" value="' + (i) + '">R ' + (rIndex) + '</option>');
+        if (type === REINFORCEMENT_CYCLE_PREFIX) {
+            $('#cycles').append('<option class="cycle" value="' + (i) + '">R ' + (rIndex) + '</option>');
             rIndex++;
         } else {
-            $('#loops').append('<option class="loop" value="' + (i) + '">B ' + (bIndex) + '</option>');
+            $('#cycles').append('<option class="cycle" value="' + (i) + '">B ' + (bIndex) + '</option>');
             bIndex++;
         }
     }

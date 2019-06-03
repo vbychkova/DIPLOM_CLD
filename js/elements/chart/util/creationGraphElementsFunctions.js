@@ -8,8 +8,8 @@ function state(x, y, label) {
     return cell;
 }
 
-function loop(x, y, label, link) {
-    const cell = new joint.shapes.fsa.Loop({
+function cycle(x, y, label, link) {
+    const cell = new joint.shapes.fsa.Cycle({
         position: {x: x, y: y},
         attrs: {
             image: {"xlink:href": link},

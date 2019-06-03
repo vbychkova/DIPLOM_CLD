@@ -8,9 +8,9 @@ $(document).on('click', '.linkElement', function () {
     svg.setAttribute("class", "linkAdd");
 });
 
-$(document).on('click', '.loopElement', function () {
+$(document).on('click', '.cycleElement', function () {
     const svg = document.getElementsByTagName('svg')[0];
-    svg.setAttribute("class", "loopAdd");
+    svg.setAttribute("class", "cycleAdd");
 });
 
 $(document).on('click', '.refreshElement', function () {
