@@ -36,7 +36,7 @@ function link(source, target, color, label, time) {
             '.marker-target': {
                 fill: color,
                 stroke: color,
-                d: 'M 10 0 L 0 5 L 10 10 z'
+                d: 'M 10 2 L 0 5 L 10 7 z'
             },
             'stroke-width': 2
             ,

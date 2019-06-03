@@ -15,13 +15,13 @@ const paper = new joint.dia.Paper({
     gridSize: 1,
     model: graph,
     defaultLink: function () {
-        const link = new joint.dia.Link({
+        const link = new joint.shapes.fsa.Arrow({
 
             attrs: {
                 '.marker-target': {
                     fill: RED,
                     stroke: RED,
-                    d: 'M 10 0 L 0 5 L 10 10 z'
+                    d: 'M 10 2 L 0 5 L 10 7 z'
                 },
 
                 '.connection': {
