@@ -25,7 +25,11 @@ function measureText(pText, pFontSize, pStyle) {
 }
 
 function setSize(label) {
-    let size = measureText(label, 9, 'arial').width;
+    let zoomValue=1;
+    if(zoom!==undefined){
+        zoomValue=zoom.getSizes().realZoom;
+    }
+    let size = measureText(label, 9, 'arial').width*(1/zoomValue);
     if (size < 20) {
         size = 20;
     }
@@ -151,7 +155,7 @@ function changeCounters(label) {
 }
 
 function setHistory() {
-    historyOfGraph.push(graph.toJSON());
+    historyOfGraph.push({status: graph.toJSON(),comment: ''});
 }
 
 function onDrag(evt) {

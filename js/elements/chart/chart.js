@@ -6,7 +6,7 @@ let bufferFlag = false;
 let balanceCycleCounter = 1;
 let reinforcementCycleCounter = 1;
 const width = $(window).width() - 60;
-const height = $(window).height() - 100;
+const height = $(window).height() - 120;
 let currentCycles=[];
 const paper = new joint.dia.Paper({
     el: $('#paper'),
