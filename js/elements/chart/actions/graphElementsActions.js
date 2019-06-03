@@ -84,8 +84,8 @@ function createCycle(x, y) {
     });
 }
 
-function createCycleByType(x, y, selectedOption) {
 
+function createCycleByType(x, y, selectedOption) {
     switch (selectedOption) {
         case BALANCE_CYCLE_CLOCKWISE:
             cycle(x, y, BALANCE_CYCLE_PREFIX + " " + balanceCycleCounter, CLOCKWISE_LINK);
@@ -135,7 +135,7 @@ function saveCycle(currElement, textLabel) {
     graph.removeCells(currElement);
     changeNumeration(textLabel);
     changeCounters(textLabel);
-    createCycleByType(position.x, position.y, selectedOption);
+	createCycleByType(position.x, position.y, selectedOption);
 }
 
 function deleteCycle(currElement, textLabel) {

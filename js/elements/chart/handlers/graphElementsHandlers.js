@@ -98,8 +98,7 @@ paper.on('blank:pointerclick', function (evt, x, y) {
             case 'rectangleAdd':
                 createBox(x, y);
                 break;
-
-            case 'cycleAdd':
+			case 'cycleAdd':
                 createCycleByType(x, y,BALANCE_CYCLE_CLOCKWISE);
                 break;
 
