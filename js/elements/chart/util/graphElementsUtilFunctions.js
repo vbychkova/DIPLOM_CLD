@@ -1,5 +1,31 @@
+function measureText(pText, pFontSize, pStyle) {
+    let lDiv = document.createElement('div');
+
+    document.body.appendChild(lDiv);
+
+    if (pStyle != null) {
+        lDiv.style = pStyle;
+    }
+    lDiv.style.fontSize = "" + pFontSize + "px";
+    lDiv.style.position = "absolute";
+    lDiv.style.left = -1000;
+    lDiv.style.top = -1000;
+
+    lDiv.innerHTML = pText;
+
+    const lResult = {
+        width: lDiv.clientWidth,
+        height: lDiv.clientHeight
+    };
+
+    document.body.removeChild(lDiv);
+    lDiv = null;
+
+    return lResult;
+}
+
 function setSize(label) {
-    let size = 10 * label.length;
+    let size = measureText(label, 9, 'arial').width;
     if (size < 20) {
         size = 20;
     }

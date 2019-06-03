@@ -4,7 +4,7 @@ linkForWorkaround(space1, space2, WHITE_SPACE);
 
 setTimeout(function () {
     graph.clear();
-},1000);
+},1);
 
 function linkForWorkaround(source, target, color) {
     const cell = new joint.shapes.fsa.Arrow({

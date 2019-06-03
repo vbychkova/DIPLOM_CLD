@@ -6,6 +6,7 @@ joint.shapes.basic.Rect.define('fsa.State', {
                 magnet: true
             },
             text: {
+                'font-family' : 'arial',
                 'font-size': '9'
             }
         }
