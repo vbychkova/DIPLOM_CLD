@@ -141,20 +141,21 @@ $(document).on('dblclick', '.index', function () {
             "  <label><input type=\"checkbox\" name=\"inTime\" class=\"inTime\" " + checked[2] + "> Направление 'Против часовой'</label>\n" +
             "</div>",
         buttons: {
-            updateCycle: {
-                label: "Изменить цикл",
-                className: 'btn-success',
-                callback: function () {
-                    saveCycle(currElement, textLabel);
-                }
-            },
             deleteCycle: {
-                label: "Удалить",
-                className: 'btn-danger',
+                label: "Удалить цикл",
+                className: 'btn-danger deleteLink',
                 callback: function () {
                     deleteCycle(currElement, textLabel);
                 }
+            },
+            updateCycle: {
+                label: "Сохранить",
+                className: 'btn-primary',
+                callback: function () {
+                    saveCycle(currElement, textLabel);
+                }
             }
+
         }
     });
     $("#selectCycleChange").val(getSelectedCycleType(currElement, textLabel));
