@@ -57,13 +57,13 @@ function createElementPalette(x, y) {
     linkElement.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/link.svg");
     linkElement.setAttribute("class", "linkElement");
 
-    const loopElement = document.createElementNS("http://www.w3.org/2000/svg", 'image');
-    loopElement.setAttribute("x", x + 2);
-    loopElement.setAttribute("y", y + 12 + DATA_RECTANGLE_IMAGE_SIZE * 2);
-    loopElement.setAttribute("width", DATA_RECTANGLE_IMAGE_SIZE);
-    loopElement.setAttribute("height", DATA_RECTANGLE_IMAGE_SIZE);
-    loopElement.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/loop.svg");
-    loopElement.setAttribute("class", "loopElement");
+    const cycleElement = document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    cycleElement.setAttribute("x", x + 2);
+    cycleElement.setAttribute("y", y + 12 + DATA_RECTANGLE_IMAGE_SIZE * 2);
+    cycleElement.setAttribute("width", DATA_RECTANGLE_IMAGE_SIZE);
+    cycleElement.setAttribute("height", DATA_RECTANGLE_IMAGE_SIZE);
+    cycleElement.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/cycle.svg");
+    cycleElement.setAttribute("class", "cycleElement");
 
     const refresh = document.createElementNS("http://www.w3.org/2000/svg", 'image');
     refresh.setAttribute("x", x + 2);
@@ -75,7 +75,7 @@ function createElementPalette(x, y) {
 
     svg.appendChild(rectangleElement);
     svg.appendChild(linkElement);
-    svg.appendChild(loopElement);
+    svg.appendChild(cycleElement);
     svg.appendChild(refresh);
     svg.appendChild(rectangle);
 }

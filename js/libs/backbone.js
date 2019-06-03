@@ -517,7 +517,7 @@
         }
       }
 
-      // You might be wondering why there's a `while` loop here. Changes can
+      // You might be wondering why there's a `while` cycle here. Changes can
       // be recursively nested within `"change"` events.
       if (changing) return this;
       if (!silent) {
@@ -1128,7 +1128,7 @@
         this.length--;
 
         // Remove references before triggering 'remove' event to prevent an
-        // infinite loop. #3693
+        // infinite cycle. #3693
         delete this._byId[model.cid];
         var id = this.modelId(model.attributes);
         if (id != null) delete this._byId[id];

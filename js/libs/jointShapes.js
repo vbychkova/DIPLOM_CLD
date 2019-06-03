@@ -50,7 +50,7 @@ joint.dia.Link.define('fsa.Arrow', {
     }
 );
 
-joint.shapes.basic.Rect.define('fsa.Loop', {
+joint.shapes.basic.Rect.define('fsa.Cycle', {
         size: {width:25,height:25},
         attrs: {
             rect: {

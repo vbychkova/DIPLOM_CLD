@@ -9,7 +9,7 @@ slider.onchange = function () {
 
 $("#watchHistory").on('click', function () {
     $("#paper").addClass("disabledPaper");
-    $('#watchLoops').css("display", "none");
+    $('#watchCycles').css("display", "none");
     $('#watchHistory').css("display", "none");
     $('#stopHistory').css("display", "inline");
     $("#historyRange")
@@ -31,31 +31,31 @@ $("#stopHistory").on('click', function () {
         .css("display", "none");
     $('#stopHistory').css("display", "none");
     $('#watchHistory').css("display", "inline-block");
-    $('#watchLoops').css("display", "inline-block");
+    $('#watchCycles').css("display", "inline-block");
     graph.fromJSON(historyOfGraph[historyOfGraph.length - 1])
 });
 
-$("#watchLoops").on('click', function () {
+$("#watchCycles").on('click', function () {
     $("#paper").addClass("disabledPaper");
-    $('#watchLoops').css("display", "none");
+    $('#watchCycles').css("display", "none");
     $('#watchHistory').css("display", "none");
-    $('#stopLoops').css("display", "block");
-    $('#loops').css("display", "block");
+    $('#stopCycles').css("display", "block");
+    $('#cycles').css("display", "block");
     buildSelectionForTheCycles();
 });
 
-$("#stopLoops").on('click', function () {
+$("#stopCycles").on('click', function () {
     $("#paper").removeClass("disabledPaper");
-    $('#watchLoops').css("display", "inline-block");
+    $('#watchCycles').css("display", "inline-block");
     $('#watchHistory').css("display", "inline-block");
-    $('#stopLoops').css("display", "none");
-    $('#loops').css("display", "none");
-    $(".loop").remove();
+    $('#stopCycles').css("display", "none");
+    $('#cycles').css("display", "none");
+    $(".cycle").remove();
     graph.fromJSON(historyOfGraph[historyOfGraph.length - 1])
 });
 
 
-$('#loops').on('change', function () {
+$('#cycles').on('change', function () {
     const value = this.value;
     graph.fromJSON(historyOfGraph[historyOfGraph.length - 1]);
     if (value !== 'none') {

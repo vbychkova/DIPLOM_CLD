@@ -59,12 +59,12 @@ function createBox(x, y) {
     });
 }
 
-function createLoop(x, y) {
+function createCycle(x, y) {
     bootbox.dialog({
         message: "<p>Управление циклами:</p>" +
             " <div class=\"form-group\">\n" +
-            "  <label for=\"selectLoopCreate\">Тип связи:</label>\n" +
-            "  <select class=\"form-control\" id=\"selectLoopCreate\">\n" +
+            "  <label for=\"selectCycleCreate\">Тип связи:</label>\n" +
+            "  <select class=\"form-control\" id=\"selectCycleCreate\">\n" +
             "    <option value='1'>Балансирующий цикл по часовой</option>\n" +
             "    <option value='2'>Балансирующий цикл против часовой</option>\n" +
             "    <option value='3'>Усиливающий цикл по часовой</option>\n" +
@@ -72,39 +72,39 @@ function createLoop(x, y) {
             "  </select>\n" +
             "</div> ",
         buttons: {
-            createLoop: {
+            createCycle: {
                 label: "Создать цикл",
                 className: 'btn-success',
                 callback: function () {
-                    const selectedOption = $('#selectLoopCreate').val();
-                    createLoopSecondStep(x, y, selectedOption);
+                    const selectedOption = $('#selectCycleCreate').val();
+                    createCycleByType(x, y, selectedOption);
                 }
             }
         }
     });
 }
 
-function createLoopSecondStep(x, y, selectedOption) {
+function createCycleByType(x, y, selectedOption) {
 
     switch (selectedOption) {
-        case BALANCE_LOOP_CLOCKWISE:
-            loop(x, y, BALANCE_LOOP_PREFIX + " " + balanceLoopCounter, CLOCKWISE_LINK);
-            balanceLoopCounter++;
+        case BALANCE_CYCLE_CLOCKWISE:
+            cycle(x, y, BALANCE_CYCLE_PREFIX + " " + balanceCycleCounter, CLOCKWISE_LINK);
+            balanceCycleCounter++;
             break;
 
-        case BALANCE_LOOP_COUNTERCLOCKWISE:
-            loop(x, y, BALANCE_LOOP_PREFIX + " " + balanceLoopCounter, COUNTERCLOCKWISE_LINK);
-            balanceLoopCounter++;
+        case BALANCE_CYCLE_COUNTERCLOCKWISE:
+            cycle(x, y, BALANCE_CYCLE_PREFIX + " " + balanceCycleCounter, COUNTERCLOCKWISE_LINK);
+            balanceCycleCounter++;
             break;
 
-        case REINFORCEMENT_LOOP_CLOCKWISE:
-            loop(x, y, REINFORCEMENT_LOOP_PREFIX + " " + reinforcementLoopCounter, CLOCKWISE_LINK);
-            reinforcementLoopCounter++;
+        case REINFORCEMENT_CYCLE_CLOCKWISE:
+            cycle(x, y, REINFORCEMENT_CYCLE_PREFIX + " " + reinforcementCycleCounter, CLOCKWISE_LINK);
+            reinforcementCycleCounter++;
             break;
 
-        case REINFORCEMENT_LOOP_COUNTERCLOCKWISE:
-            loop(x, y, REINFORCEMENT_LOOP_PREFIX + " " + reinforcementLoopCounter, COUNTERCLOCKWISE_LINK);
-            reinforcementLoopCounter++;
+        case REINFORCEMENT_CYCLE_COUNTERCLOCKWISE:
+            cycle(x, y, REINFORCEMENT_CYCLE_PREFIX + " " + reinforcementCycleCounter, COUNTERCLOCKWISE_LINK);
+            reinforcementCycleCounter++;
             break;
     }
 }
@@ -131,11 +131,11 @@ function connectLink(elemId) {
 
 function saveCycle(currElement, textLabel) {
     const position = currElement.get('position');
-    const selectedOption = $('#selectLoopChange').val();
+    const selectedOption = $('#selectCycleChange').val();
     graph.removeCells(currElement);
     changeNumeration(textLabel);
     changeCounters(textLabel);
-    createLoopSecondStep(position.x, position.y, selectedOption);
+    createCycleByType(position.x, position.y, selectedOption);
 }
 
 function deleteCycle(currElement, textLabel) {

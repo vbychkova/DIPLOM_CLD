@@ -5,7 +5,7 @@ $(document).on('click', '.downloadButton', function () {
                 const obj = graph.toJSON();
                 const elements = [];
                 elements.push(obj);
-                elements.push({rLoop: reinforcementLoopCounter, bLoop: balanceLoopCounter});
+                elements.push({rCycle: reinforcementCycleCounter, bCycle: balanceCycleCounter});
                 elements.push({history: historyOfGraph});
                 const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(elements));
                 const elem = $("<a></a>")
@@ -45,8 +45,8 @@ $(document).on('change', '.uploadInput', function () {
                 const result = JSON.parse(e.target.result);
                 const formatted = JSON.stringify(result[0]);
                 graph.fromJSON(JSON.parse(formatted));
-                balanceLoopCounter = result[1].bLoop;
-                reinforcementLoopCounter = result[1].rLoop;
+                balanceCycleCounter = result[1].bCycle;
+                reinforcementCycleCounter = result[1].rCycle;
                 historyOfGraph = result[2].history;
                 $('#historyRange')
                     .css("display", "block")

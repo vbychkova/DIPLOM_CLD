@@ -1,11 +1,11 @@
 function recognizeCycleType(elements) {
     elements.push(elements[0]);
-    const count = countLinksForRecognizeLoopType(elements);
+    const count = countLinksForRecognizeCycleType(elements);
     const minusCount = count["-"];
     if (minusCount % 2 === 0 || minusCount === 0) {
-        return REINFORCEMENT_LOOP_PREFIX;
+        return REINFORCEMENT_CYCLE_PREFIX;
     } else {
-        return BALANCE_LOOP_PREFIX;
+        return BALANCE_CYCLE_PREFIX;
     }
 }
 
@@ -71,7 +71,7 @@ function findLinks(elements) {
     return neededLinks;
 }
 
-function countLinksForRecognizeLoopType(elements) {
+function countLinksForRecognizeCycleType(elements) {
     let plusCount = 0;
     let minusCount = 0;
     const links = findLinks(elements);

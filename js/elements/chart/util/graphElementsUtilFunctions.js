@@ -33,18 +33,18 @@ function getSelectedLinkType(element) {
     return POSITIVE_LINK_VALUE;
 }
 
-function getSelectedLoopType(element, text) {
-    if (text.startsWith(BALANCE_LOOP_PREFIX)) {
+function getSelectedCycleType(element, text) {
+    if (text.startsWith(BALANCE_CYCLE_PREFIX)) {
         if (element.attr("image/xlink:href") === CLOCKWISE_LINK) {
-            return BALANCE_LOOP_CLOCKWISE;
+            return BALANCE_CYCLE_CLOCKWISE;
         }
-        return BALANCE_LOOP_COUNTERCLOCKWISE;
+        return BALANCE_CYCLE_COUNTERCLOCKWISE;
     }
-    if (text.startsWith(REINFORCEMENT_LOOP_PREFIX)) {
+    if (text.startsWith(REINFORCEMENT_CYCLE_PREFIX)) {
         if (element.attr("image/xlink:href") === CLOCKWISE_LINK) {
-            return REINFORCEMENT_LOOP_CLOCKWISE;
+            return REINFORCEMENT_CYCLE_CLOCKWISE;
         }
-        return REINFORCEMENT_LOOP_COUNTERCLOCKWISE;
+        return REINFORCEMENT_CYCLE_COUNTERCLOCKWISE;
     }
 }
 
@@ -103,10 +103,10 @@ function changeNumeration(textLabel) {
 }
 
 function changeCounters(label) {
-    if (label.charAt(0) === REINFORCEMENT_LOOP_PREFIX) {
-        reinforcementLoopCounter--;
+    if (label.charAt(0) === REINFORCEMENT_CYCLE_PREFIX) {
+        reinforcementCycleCounter--;
     } else {
-        balanceLoopCounter--;
+        balanceCycleCounter--;
     }
 }
 

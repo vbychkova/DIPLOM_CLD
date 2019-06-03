@@ -93,14 +93,14 @@ paper.on('blank:pointerclick', function (evt, x, y) {
     const classOfTarget = evt.target.getAttribute("class");
 
     if (classOfTarget != 'rectangleElement' && classOfTarget != 'linkElement'
-        && classOfTarget != 'loopElement' && classOfTarget != 'refreshElement' && classOfTarget != 'clearElement') {
+        && classOfTarget != 'cycleElement' && classOfTarget != 'refreshElement' && classOfTarget != 'clearElement') {
         switch (classSVG) {
             case 'rectangleAdd':
                 createBox(x, y);
                 break;
 
-            case 'loopAdd':
-                createLoop(x, y);
+            case 'cycleAdd':
+                createCycleByType(x, y,BALANCE_CYCLE_CLOCKWISE);
                 break;
 
         }
@@ -131,7 +131,7 @@ $(document).on('dblclick', '.index', function () {
     bootbox.dialog({
         message: "<p>Выберите тип цикла:</p>" +
             " <div class=\"form-group\">\n" +
-            "  <select class=\"form-control\" id=\"selectLoopChange\">\n" +
+            "  <select class=\"form-control\" id=\"selectCycleChange\">\n" +
             "    <option value='1'>Балансирующий цикл по часовой</option>\n" +
             "    <option value='2'>Балансирующий цикл против часовой</option>\n" +
             "    <option value='3'>Усиливающий цикл по часовой</option>\n" +
@@ -139,14 +139,14 @@ $(document).on('dblclick', '.index', function () {
             "  </select>\n" +
             "</div> ",
         buttons: {
-            updateLoop: {
+            updateCycle: {
                 label: "Изменить цикл",
                 className: 'btn-success',
                 callback: function () {
                     saveCycle(currElement, textLabel);
                 }
             },
-            deleteLoop: {
+            deleteCycle: {
                 label: "Удалить",
                 className: 'btn-danger',
                 callback: function () {
@@ -155,5 +155,5 @@ $(document).on('dblclick', '.index', function () {
             }
         }
     });
-    $("#selectLoopChange").val(getSelectedLoopType(currElement, textLabel));
+    $("#selectCycleChange").val(getSelectedCycleType(currElement, textLabel));
 });
