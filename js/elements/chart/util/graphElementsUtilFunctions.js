@@ -155,7 +155,7 @@ function changeCounters(label) {
 }
 
 function setHistory() {
-    historyOfGraph.push(graph.toJSON());
+    historyOfGraph.push({status: graph.toJSON(),comment: ''});
 }
 
 function onDrag(evt) {

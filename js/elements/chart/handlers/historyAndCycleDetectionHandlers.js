@@ -4,7 +4,9 @@ const box = document.getElementById("box");
 
 slider.onchange = function () {
     box.value = slider.value;
-    graph.fromJSON(historyOfGraph[slider.value-1])
+    const historyValue=historyOfGraph[slider.value-1];
+    graph.fromJSON(historyValue.status);
+    $("#commentValue").val(historyValue.comment);
 };
 
 $("#watchHistory").on('click', function () {
@@ -12,6 +14,11 @@ $("#watchHistory").on('click', function () {
     $('#watchCycles').css("display", "none");
     $('#watchHistory').css("display", "none");
     $('#stopHistory').css("display", "inline");
+    if(historyOfGraph.length !== 0){
+        $('#comment').css("display", "inline");
+        $("#commentValue")[0].value=historyOfGraph[historyOfGraph.length-1].comment;
+    }
+
     $("#historyRange")
         .css("display", "block")
         .attr("max", historyOfGraph.length)
@@ -32,7 +39,10 @@ $("#stopHistory").on('click', function () {
     $('#stopHistory').css("display", "none");
     $('#watchHistory').css("display", "inline-block");
     $('#watchCycles').css("display", "inline-block");
-    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1])
+    closeNav();
+    $('#comment').css("display", "none");
+    $("#commentValue")[0].value="";
+    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status)
 });
 
 $("#watchCycles").on('click', function () {
@@ -51,14 +61,37 @@ $("#stopCycles").on('click', function () {
     $('#stopCycles').css("display", "none");
     $('#cycles').css("display", "none");
     $(".cycle").remove();
-    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1])
+    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status)
 });
 
 
 $('#cycles').on('change', function () {
     const value = this.value;
-    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1]);
+    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status);
     if (value !== 'none') {
         showCycle(value);
     }
+});
+
+function openNav() {
+    document.getElementById("comment").style.display="none";
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("comment").style.display="inline";
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+
+$('#commentValue').bind('input propertychange', function() {
+    $('#saveComment').css("display", "inline-block");
+});
+
+$('#saveComment').click(function () {
+    const historyValue=historyOfGraph[slider.value-1];
+    const comment= $('#commentValue')[0].value;
+    historyValue.comment=comment;
+    $('#saveComment').css("display", "none");
 });
