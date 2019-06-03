@@ -100,7 +100,7 @@ paper.on('blank:pointerclick', function (evt, x, y) {
                 break;
 
             case 'loopAdd':
-                createLoop(x, y);
+                createLoopByType(x, y,BALANCE_LOOP_CLOCKWISE);
                 break;
 
         }

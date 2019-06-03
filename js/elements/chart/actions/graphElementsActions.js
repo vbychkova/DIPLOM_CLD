@@ -77,14 +77,14 @@ function createLoop(x, y) {
                 className: 'btn-success',
                 callback: function () {
                     const selectedOption = $('#selectLoopCreate').val();
-                    createLoopSecondStep(x, y, selectedOption);
+                    createLoopByType(x, y, selectedOption);
                 }
             }
         }
     });
 }
 
-function createLoopSecondStep(x, y, selectedOption) {
+function createLoopByType(x, y, selectedOption) {
 
     switch (selectedOption) {
         case BALANCE_LOOP_CLOCKWISE:
@@ -135,7 +135,7 @@ function saveCycle(currElement, textLabel) {
     graph.removeCells(currElement);
     changeNumeration(textLabel);
     changeCounters(textLabel);
-    createLoopSecondStep(position.x, position.y, selectedOption);
+    createLoopByType(position.x, position.y, selectedOption);
 }
 
 function deleteCycle(currElement, textLabel) {
