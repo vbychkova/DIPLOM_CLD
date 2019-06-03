@@ -92,8 +92,8 @@ paper.on('blank:pointerclick', function (evt, x, y) {
     const classSVG = svg.getAttribute("class");
     const classOfTarget = evt.target.getAttribute("class");
 
-    if (classOfTarget != 'rectangleElement' && classOfTarget != 'linkElement'
-        && classOfTarget != 'cycleElement' && classOfTarget != 'refreshElement' && classOfTarget != 'clearElement') {
+    if (classOfTarget !== 'rectangleElement' && classOfTarget !== 'linkElement'
+        && classOfTarget !== 'cycleElement' && classOfTarget !== 'refreshElement' && classOfTarget !== 'clearElement') {
         switch (classSVG) {
             case 'rectangleAdd':
                 createBox(x, y);
@@ -127,16 +127,19 @@ $(document).on('dblclick', '.index', function () {
     const textLabel = $(this).text();
     const elemId = $(this).parent().parent()[0].getAttribute("model-id");
     const currElement = graph.getCell(elemId);
+    const type = getSelectedCycleType(currElement,textLabel);
+    const checked = getStatusOfRadioButtonsInCycleMenu(type);
     bootbox.dialog({
         message: "<p>Выберите тип цикла:</p>" +
-            " <div class=\"form-group\">\n" +
-            "  <select class=\"form-control\" id=\"selectCycleChange\">\n" +
-            "    <option value='1'>Балансирующий цикл по часовой</option>\n" +
-            "    <option value='2'>Балансирующий цикл против часовой</option>\n" +
-            "    <option value='3'>Усиливающий цикл по часовой</option>\n" +
-            "    <option value='4'>Усиливающий цикл против часовой</option>\n" +
-            "  </select>\n" +
-            "</div> ",
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Балансирующий цикл</label>\n" +
+            "</div>\n" +
+            "<div class=\"radio\">\n" +
+            "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' " + checked[1] + ">Усиливающий цикл</label>\n" +
+            "</div>\n" +
+            "<div class=\"checkbox\">\n" +
+            "  <label><input type=\"checkbox\" name=\"inTime\" class=\"inTime\" " + checked[2] + "> Направление 'Против часовой'</label>\n" +
+            "</div>",
         buttons: {
             updateCycle: {
                 label: "Изменить цикл",

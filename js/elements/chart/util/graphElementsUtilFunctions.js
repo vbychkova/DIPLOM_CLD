@@ -66,6 +66,20 @@ function getStatusOfRadioButtonsInLinkMenu(type) {
     return elems;
 }
 
+function getStatusOfRadioButtonsInCycleMenu(type) {
+    const elems = ['', '', ''];
+    if (type === BALANCE_CYCLE_CLOCKWISE || type === BALANCE_CYCLE_COUNTERCLOCKWISE) {
+        elems[0] = 'checked';
+    }
+    if (type === REINFORCEMENT_CYCLE_CLOCKWISE || type === REINFORCEMENT_CYCLE_COUNTERCLOCKWISE) {
+        elems[1] = 'checked';
+    }
+    if (type === BALANCE_CYCLE_COUNTERCLOCKWISE || type === REINFORCEMENT_CYCLE_COUNTERCLOCKWISE) {
+        elems[2] = 'checked';
+    }
+    return elems;
+}
+
 function setTypeOfLink(element, selectedOption) {
     switch (selectedOption) {
         case POSITIVE_LINK_VALUE:
@@ -126,4 +140,11 @@ function onDragEnd(evt) {
 
     evt.data.view.pointerup(evt);
     $(document).off('.linker');
+}
+
+function getFullType() {
+    const clickedType = $('.select').toArray().filter(getClickedButton)[0].id;
+    const clickedTime = $('.inTime')[0].checked ? 1 : 0;
+    const fullTypeOfCycle = Number(clickedType) + Number(clickedTime);
+    return fullTypeOfCycle;
 }

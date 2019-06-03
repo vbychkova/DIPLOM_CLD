@@ -18,9 +18,7 @@ function deleteLinkAction(currElement) {
 }
 
 function saveLink(currElement) {
-    const clickedType = $('.select').toArray().filter(getClickedButton)[0].id;
-    const clickedTime = $('.inTime')[0].checked ? 1 : 0;
-    const fullTypeOfLink = Number(clickedType) + Number(clickedTime);
+    const fullTypeOfLink = getFullType();
     setTypeOfLink(currElement, fullTypeOfLink.toString());
     setHistory();
 }
@@ -58,32 +56,6 @@ function createBox(x, y) {
         }
     });
 }
-
-function createCycle(x, y) {
-    bootbox.dialog({
-        message: "<p>Управление циклами:</p>" +
-            " <div class=\"form-group\">\n" +
-            "  <label for=\"selectCycleCreate\">Тип связи:</label>\n" +
-            "  <select class=\"form-control\" id=\"selectCycleCreate\">\n" +
-            "    <option value='1'>Балансирующий цикл по часовой</option>\n" +
-            "    <option value='2'>Балансирующий цикл против часовой</option>\n" +
-            "    <option value='3'>Усиливающий цикл по часовой</option>\n" +
-            "    <option value='4'>Усиливающий цикл против часовой</option>\n" +
-            "  </select>\n" +
-            "</div> ",
-        buttons: {
-            createCycle: {
-                label: "Создать цикл",
-                className: 'btn-success',
-                callback: function () {
-                    const selectedOption = $('#selectCycleCreate').val();
-                    createCycleByType(x, y, selectedOption);
-                }
-            }
-        }
-    });
-}
-
 
 function createCycleByType(x, y, selectedOption) {
     switch (selectedOption) {
@@ -131,11 +103,11 @@ function connectLink(elemId) {
 
 function saveCycle(currElement, textLabel) {
     const position = currElement.get('position');
-    const selectedOption = $('#selectCycleChange').val();
+    const fullTypeOfCycle = getFullType();
     graph.removeCells(currElement);
     changeNumeration(textLabel);
     changeCounters(textLabel);
-	createCycleByType(position.x, position.y, selectedOption);
+    createCycleByType(position.x, position.y, fullTypeOfCycle.toString());
 }
 
 function deleteCycle(currElement, textLabel) {
