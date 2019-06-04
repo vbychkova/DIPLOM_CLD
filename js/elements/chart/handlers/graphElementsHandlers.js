@@ -9,8 +9,8 @@ $(document).on('click', '.labels', function () {
     const type = getSelectedLinkType(currElement);
     const checked = getStatusOfRadioButtonsInLinkMenu(type);
     bootbox.dialog({
-        message: "<p>Управление Связями</p> " +
-            " <div class=\"form-group\">\n" +
+        title: "Управление cвязями",
+        message: " <div class=\"form-group\">\n" +
             " Тип связи:\n" +
             "<div class=\"radio\">\n" +
             "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Положительная связь</label>\n" +
