@@ -31,13 +31,16 @@ function deleteBlock(currElement) {
 
 function changeTextOfBlock(currElement, textLabel) {
     bootbox.prompt({
-        title: "Текст переменной",
+        title: "Название переменной",
         value: textLabel,
         callback: function (result) {
             if (result) {
-                currElement.attr(".text/text", result);
-                currElement.resize(setSize(result), 9);
-                setHistory();
+                const text = result.trim();
+                if (text) {
+                    currElement.attr(".text/text", text);
+                    currElement.resize(setSize(text), 9);
+                    setHistory();
+                }
             }
         }
     })
@@ -45,14 +48,16 @@ function changeTextOfBlock(currElement, textLabel) {
 
 function createBox(x, y) {
     bootbox.prompt({
-        title: 'Текст переменной',
-        value: "Новая переменная",
+        title: 'Название переменной',
+        value: "",
         callback: function (result) {
             if (result) {
-                state(x, y, result);
-                setHistory();
+                const text = result.trim();
+                if (text) {
+                    state(x, y, text);
+                    setHistory();
+                }
             }
-
         }
     });
 }
