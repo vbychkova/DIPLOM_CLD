@@ -75,13 +75,13 @@ $('#cycles').on('change', function () {
 
 function openNav() {
     document.getElementById("comment").style.display="none";
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("sidenav").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
 }
 
 function closeNav() {
     document.getElementById("comment").style.display="inline";
-    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("sidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
 
