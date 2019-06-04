@@ -13,10 +13,6 @@ $(document).on('click', '.cycleElement', function () {
     svg.setAttribute("class", "cycleAdd");
 });
 
-$(document).on('click', '.refreshElement', function () {
-    deleteCursor();
-});
-
 $('svg').on("contextmenu", function (e) {
     deleteCursor();
 });
