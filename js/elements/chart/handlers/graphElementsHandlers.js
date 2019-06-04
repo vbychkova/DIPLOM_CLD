@@ -62,7 +62,7 @@ $(document).on('dblclick', '.text', function () {
         message: "<p>Что вы хотите сделать?</p>",
         buttons: {
             changeText: {
-                label: "Изменить текст",
+                label: "Изменить название",
                 className: 'btn-info',
                 callback: function () {
                     changeTextOfBlock(currElement, textLabel)
