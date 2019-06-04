@@ -1,12 +1,12 @@
 "use strict";
 
 function undoRedoAction(evtObj) {
-    console.log(evtObj.keyCode);
     if (evtObj.keyCode === 90 && evtObj.ctrlKey) {
         commandManager.undo();
         setHistory();
     }
 
+    if (evtObj.keyCode === 89 && evtObj.ctrlKey) {
         commandManager.redo();
         setHistory();
     }
