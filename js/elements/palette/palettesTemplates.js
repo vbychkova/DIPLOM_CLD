@@ -65,18 +65,9 @@ function createElementPalette(x, y) {
     cycleElement.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/cycle.svg");
     cycleElement.setAttribute("class", "cycleElement");
 
-    const refresh = document.createElementNS("http://www.w3.org/2000/svg", 'image');
-    refresh.setAttribute("x", x + 2);
-    refresh.setAttribute("y", y + 16 + DATA_RECTANGLE_IMAGE_SIZE * 3);
-    refresh.setAttribute("width", DATA_RECTANGLE_IMAGE_SIZE);
-    refresh.setAttribute("height", DATA_RECTANGLE_IMAGE_SIZE);
-    refresh.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', "images/refresh.svg");
-    refresh.setAttribute("class", "refreshElement");
-
     svg.appendChild(rectangleElement);
     svg.appendChild(linkElement);
     svg.appendChild(cycleElement);
-    svg.appendChild(refresh);
     svg.appendChild(rectangle);
 }
 

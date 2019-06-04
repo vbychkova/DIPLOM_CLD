@@ -93,7 +93,7 @@ paper.on('blank:pointerclick', function (evt, x, y) {
     const classOfTarget = evt.target.getAttribute("class");
 
     if (classOfTarget !== 'rectangleElement' && classOfTarget !== 'linkElement'
-        && classOfTarget !== 'cycleElement' && classOfTarget !== 'refreshElement' && classOfTarget !== 'clearElement') {
+        && classOfTarget !== 'cycleElement' && classOfTarget !== 'clearElement') {
         switch (classSVG) {
             case 'rectangleAdd':
                 createBox(x, y);
