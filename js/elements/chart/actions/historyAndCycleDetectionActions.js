@@ -55,3 +55,11 @@ function rollBackGraph() {
         graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status);
     }
 }
+
+function saveCurrentGraph() {
+    if(historyOfGraph.length!==0){
+        const last=historyOfGraph[historyOfGraph.length - 1];
+        historyOfGraph.pop();
+        historyOfGraph.push({status:graph.toJSON(),comment:last.comment});
+    }
+}

@@ -10,6 +10,7 @@ slider.onchange = function () {
 };
 
 $("#watchHistory").on('click', function () {
+    saveCurrentGraph();
     $("#paper").addClass("disabledPaper");
     $('#watchButtons').css("display", "none");
     $('#stopHistory').css("display", "inline");
@@ -34,6 +35,7 @@ $("#stopHistory").on('click', function () {
 });
 
 $("#watchCycles").on('click', function () {
+    saveCurrentGraph();
     $("#paper").addClass("disabledPaper");
     $('#watchButtons').css("display", "none");
     $('#stopCycles').css("display", "block");
