@@ -1,34 +1,27 @@
-const space1 = state(800, 1, '');
-const space2 = state(800, 2, '');
-linkForWorkaround(space1, space2, WHITE_SPACE);
+stateForWorkaround(width/2, 0);
 
 setTimeout(function () {
     graph.clear();
 },500);
 
-function linkForWorkaround(source, target, color) {
-    const cell = new joint.shapes.fsa.Arrow({
-        source: {id: source.id},
-        target: {id: target.id},
-        labels: [{
-            attrs: {text: {text: '', 'fill': color}}
-        },
-            {
-                attrs: {text: {text: '', 'fill': color}}
-            }
-        ],
-        attrs: {
-            '.marker-target': {
-                fill: color,
-                stroke: color,
-            },
-            '.connection': {
-                'fill': 'none',
-                'stroke': color,
-            }
-        }
+function getLabel(x) {
+    let value="";
+    for(let i=0;i<x/3;i++){
+        value+=" ";
+    }
+    value+="\n";
+    return value;
+}
+
+function stateForWorkaround(x, y) {
+    const label=getLabel(x);
+    const cell = new joint.shapes.fsa.State({
+        position: {x: x, y: y},
+        size: {width: setSize(label), height: 9},
+        attrs: {text: {text: label}}
     });
     graph.addCell(cell);
-    return cell;
 }
+
+
 
