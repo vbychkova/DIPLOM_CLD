@@ -28,3 +28,30 @@ function showCycle(value) {
             .label(1, {attrs: {text: {fill: GREY}}});
     });
 }
+
+function exitFromHistoryBlock() {
+    $("#historyRange")
+        .val(historyOfGraph.length)
+        .css("display", "none");
+    $("#box")
+        .val(historyOfGraph.length)
+        .css("display", "none");
+    $('#stopHistory').css("display", "none");
+    $('#watchButtons').css("display", "inline");
+    closeNav();
+    $('#comment').css("display", "none");
+    $("#commentValue")[0].value = "";
+}
+
+function exitFromCycleBlock() {
+    $('#watchButtons').css("display", "inline");
+    $('#stopCycles').css("display", "none");
+    $('#cycles').css("display", "none");
+    $(".cycle").remove();
+}
+
+function rollBackGraph() {
+    if(historyOfGraph.length!==0){
+        graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status);
+    }
+}

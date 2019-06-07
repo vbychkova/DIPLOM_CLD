@@ -4,7 +4,7 @@ const box = document.getElementById("box");
 
 slider.onchange = function () {
     box.value = slider.value;
-    const historyValue=historyOfGraph[slider.value-1];
+    const historyValue = historyOfGraph[slider.value - 1];
     graph.fromJSON(historyValue.status);
     $("#commentValue").val(historyValue.comment);
 };
@@ -13,9 +13,9 @@ $("#watchHistory").on('click', function () {
     $("#paper").addClass("disabledPaper");
     $('#watchButtons').css("display", "none");
     $('#stopHistory').css("display", "inline");
-    if(historyOfGraph.length !== 0){
+    if (historyOfGraph.length !== 0) {
         $('#comment').css("display", "inline");
-        $("#commentValue")[0].value=historyOfGraph[historyOfGraph.length-1].comment;
+        $("#commentValue")[0].value = historyOfGraph[historyOfGraph.length - 1].comment;
     }
 
     $("#historyRange")
@@ -29,18 +29,8 @@ $("#watchHistory").on('click', function () {
 
 $("#stopHistory").on('click', function () {
     $("#paper").removeClass("disabledPaper");
-    $("#historyRange")
-        .val(historyOfGraph.length)
-        .css("display", "none");
-    $("#box")
-        .val(historyOfGraph.length)
-        .css("display", "none");
-    $('#stopHistory').css("display", "none");
-    $('#watchButtons').css("display", "inline");
-    closeNav();
-    $('#comment').css("display", "none");
-    $("#commentValue")[0].value="";
-    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status)
+    exitFromHistoryBlock();
+    rollBackGraph();
 });
 
 $("#watchCycles").on('click', function () {
@@ -53,41 +43,49 @@ $("#watchCycles").on('click', function () {
 
 $("#stopCycles").on('click', function () {
     $("#paper").removeClass("disabledPaper");
-    $('#watchButtons').css("display", "inline");
-    $('#stopCycles').css("display", "none");
-    $('#cycles').css("display", "none");
-    $(".cycle").remove();
-    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status)
+    exitFromCycleBlock();
+    rollBackGraph();
 });
 
 
 $('#cycles').on('change', function () {
     const value = this.value;
-    graph.fromJSON(historyOfGraph[historyOfGraph.length - 1].status);
+    rollBackGraph();
     if (value !== 'none') {
         showCycle(value);
     }
 });
 
 function openNav() {
-    document.getElementById("comment").style.display="none";
+    document.getElementById("comment").style.display = "none";
     document.getElementById("sidenav").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
 }
 
 function closeNav() {
-    document.getElementById("comment").style.display="inline";
+    document.getElementById("comment").style.display = "inline";
     document.getElementById("sidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
+    document.getElementById("main").style.marginLeft = "0";
 }
 
-$('#commentValue').bind('input propertychange', function() {
+$('#commentValue').bind('input propertychange', function () {
     $('#saveComment').css("display", "inline-block");
 });
 
 $('#saveComment').click(function () {
-    const historyValue=historyOfGraph[slider.value-1];
-    const comment= $('#commentValue')[0].value;
-    historyValue.comment=comment;
+    const historyValue = historyOfGraph[slider.value - 1];
+    const comment = $('#commentValue')[0].value;
+    historyValue.comment = comment;
     $('#saveComment').css("display", "none");
+});
+
+$('#paperWrapper').click(function () {
+    const paperElement = $("#paper");
+    if (paperElement.hasClass("disabledPaper")) {
+        paperElement.removeClass("disabledPaper");
+        exitFromHistoryBlock();
+        exitFromCycleBlock();
+        rollBackGraph();
+    }
+
 });
