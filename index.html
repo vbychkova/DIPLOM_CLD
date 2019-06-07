@@ -32,20 +32,23 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="form-group">
-                    <textarea class="form-control" rows="40" id="commentValue"></textarea>
+                    <textarea class="form-control" rows="15" id="commentValue"></textarea>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-1">
-                <button type="button" class="btn btn-default" id="saveComment" style="display: none">Сохранить</button>
+                <button type="button" class="btn btn-success" id="saveComment" style="display: none">Сохранить</button>
             </div>
         </div>
     </div>
 </div>
 
 <div id="main">
-    <div id="paper"></div>
+    <div id="paperWrapper">
+        <div id="paper"></div>
+    </div>
+
 
     <script src="js/constants/applicationConstants.js"></script>
     <script src="js/constants/colorConstants.js"></script>
@@ -65,21 +68,55 @@
     <script src="js/elements/chart/workaround/hardCodedElements.js"></script>
 
     <div class="commandTools">
-        <input type="button" id="watchHistory" name="startHistory" value="Посмотреть историю" class="btn btn-primary"/>
-        <input type="button" id="watchCycles" name="watchCycles" value="Посмотреть циклы" class="btn btn-warning"/>
-        <img src="images/comment.png" id="comment" style="display: none" onclick="openNav()"/>
-        <input type="button" id="stopHistory" name="stopHistory" value="X" class="btn btn-danger"
-               style="display: none"/>
-        <input type="button" id="stopCycles" name="stopHistory" value="X" class="btn btn-danger" style="display: none"/>
-        <input type="range" min="1" max="1" value="1" id="historyRange" step="1" name="historyRange"
-               style="display: none"/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4" id="watchButtons">
+                    <input type="button" id="watchCycles" name="watchCycles" value="Посмотреть циклы"
+                           class="btn btn-success"/>
+                    <input type="button" id="watchHistory" name="startHistory" value="Посмотреть историю"
+                           class="btn btn-success"/>
+                </div>
+                <div class="col-md-9 col-md-offset-1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="images/comment.png" align="right" id="comment" style="display: none"
+                                     onclick="openNav()"/>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="range" min="1" max="1" value="1" id="historyRange"
+                                       step="1" name="historyRange" style="display: none"/>
+                            </div>
+                            <div class="col-md-1"><input type="button" id="stopHistory" name="stopHistory" value="X"
+                                                         class="btn btn-danger"
+                                                         style="display: none"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-1">
+                                <input id="box" type="text" value="1" style="display: none" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-3" id="watchCyclesBLock">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select class="form-control" id="cycles" style="display: none">
+                                    <option id="none" value="none">-none-</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" id="stopCycles" name="stopHistory" value="X" class="btn btn-danger" style="display: none"/>
+                            </div>
+                        </div>
+                    </div>
 
-        <input id="box" type="text" value="1" style="display: none" disabled/>
 
-        <select class="form-control" id="cycles" style="display: none">
-            <option id="none" value="none">-none-</option>
-        </select>
-
+                </div>
+            </div>
+        </div>
     </div>
     <script src="js/elements/chart/util/historyAndCycleDetectionUtilFunctions.js"></script>
     <script src="js/elements/chart/actions/historyAndCycleDetectionActions.js"></script>

@@ -1,10 +1,10 @@
-const space1 = state(180, 390, '');
-const space2 = state(600, 400, '');
+const space1 = state(800, 1, '');
+const space2 = state(800, 2, '');
 linkForWorkaround(space1, space2, WHITE_SPACE);
 
 setTimeout(function () {
     graph.clear();
-},100);
+},500);
 
 function linkForWorkaround(source, target, color) {
     const cell = new joint.shapes.fsa.Arrow({

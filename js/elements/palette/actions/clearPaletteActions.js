@@ -10,6 +10,7 @@ $(document).on('click', '.clearElement', function () {
                 label: 'Нет',
                 className: 'btn-danger'
             }
+
         },
         callback: function (result) {
             if (result) {
