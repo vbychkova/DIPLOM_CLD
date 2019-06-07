@@ -11,8 +11,7 @@ slider.onchange = function () {
 
 $("#watchHistory").on('click', function () {
     $("#paper").addClass("disabledPaper");
-    $('#watchCycles').css("display", "none");
-    $('#watchHistory').css("display", "none");
+    $('#watchButtons').css("display", "none");
     $('#stopHistory').css("display", "inline");
     if(historyOfGraph.length !== 0){
         $('#comment').css("display", "inline");
@@ -20,7 +19,7 @@ $("#watchHistory").on('click', function () {
     }
 
     $("#historyRange")
-        .css("display", "block")
+        .css("display", "inline")
         .attr("max", historyOfGraph.length)
         .val(historyOfGraph.length);
     $("#box")
@@ -37,8 +36,7 @@ $("#stopHistory").on('click', function () {
         .val(historyOfGraph.length)
         .css("display", "none");
     $('#stopHistory').css("display", "none");
-    $('#watchHistory').css("display", "inline-block");
-    $('#watchCycles').css("display", "inline-block");
+    $('#watchButtons').css("display", "inline");
     closeNav();
     $('#comment').css("display", "none");
     $("#commentValue")[0].value="";
@@ -47,8 +45,7 @@ $("#stopHistory").on('click', function () {
 
 $("#watchCycles").on('click', function () {
     $("#paper").addClass("disabledPaper");
-    $('#watchCycles').css("display", "none");
-    $('#watchHistory').css("display", "none");
+    $('#watchButtons').css("display", "none");
     $('#stopCycles').css("display", "block");
     $('#cycles').css("display", "block");
     buildSelectionForTheCycles();
@@ -56,8 +53,7 @@ $("#watchCycles").on('click', function () {
 
 $("#stopCycles").on('click', function () {
     $("#paper").removeClass("disabledPaper");
-    $('#watchCycles').css("display", "inline-block");
-    $('#watchHistory').css("display", "inline-block");
+    $('#watchButtons').css("display", "inline");
     $('#stopCycles').css("display", "none");
     $('#cycles').css("display", "none");
     $(".cycle").remove();

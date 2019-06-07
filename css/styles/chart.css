@@ -15,17 +15,12 @@
 .link-tools { display: none }
 
 .commandTools{
-    width: 50%;
     margin: auto;
 }
 
-#stopHistory{
-    margin-left: 90%;
-    margin-right: 0;
-}
 
-#stopCycles{
-    margin-left: 100%;
+#stopHistory{
+    display: inline;
 }
 
 .disabledPaper {
@@ -35,4 +30,3 @@
 .deleteLink{
     margin-right: 60%;
 }
-
