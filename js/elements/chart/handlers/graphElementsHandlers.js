@@ -11,7 +11,7 @@ $(document).on('click', '.labels', function () {
     bootbox.dialog({
         title: "Управление cвязями",
         message: " <div class=\"form-group\">\n" +
-            " Тип связи:\n" +
+            " Полярность связи:\n" +
             "<div class=\"radio\">\n" +
             "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Положительная связь</label>\n" +
             "</div>\n" +
@@ -32,7 +32,7 @@ $(document).on('click', '.labels', function () {
             },
             changeTypeOfLink: {
                 label: "Сохранить",
-                className: 'btn-primary',
+                className: 'btn-success',
                 callback: function () {
                     saveLink(currElement);
                 }
@@ -61,18 +61,18 @@ $(document).on('dblclick', '.text', function () {
     bootbox.dialog({
         message: "<p>Что вы хотите сделать?</p>",
         buttons: {
-            changeText: {
-                label: "Изменить название",
-                className: 'btn-info',
-                callback: function () {
-                    changeTextOfBlock(currElement, textLabel)
-                }
-            },
             deleteElement: {
                 label: "Удалить",
-                className: 'btn-danger',
+                className: 'btn-danger deleteElement',
                 callback: function () {
                     deleteBlock(currElement)
+                }
+            },
+            changeText: {
+                label: "Изменить название",
+                className: 'btn-success',
+                callback: function () {
+                    changeTextOfBlock(currElement, textLabel)
                 }
             }
         }
@@ -130,7 +130,8 @@ $(document).on('dblclick', '.index', function () {
     const type = getSelectedCycleType(currElement,textLabel);
     const checked = getStatusOfRadioButtonsInCycleMenu(type);
     bootbox.dialog({
-        message: "<p>Выберите тип цикла:</p>" +
+        title: "Управыление циклами:",
+        message: "<p>Тип цикла:</p>" +
             "<div class=\"radio\">\n" +
             "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Балансирующий цикл</label>\n" +
             "</div>\n" +
@@ -138,7 +139,7 @@ $(document).on('dblclick', '.index', function () {
             "  <label><input type=\"radio\" name=\"optradio\" class='select' id='3' " + checked[1] + ">Усиливающий цикл</label>\n" +
             "</div>\n" +
             "<div class=\"checkbox\">\n" +
-            "  <label><input type=\"checkbox\" name=\"inTime\" class=\"inTime\" " + checked[2] + "> Направление 'Против часовой'</label>\n" +
+            "  <label><input type=\"checkbox\" name=\"inTime\" class=\"inTime\" " + checked[2] + "> Направление против часовой стрелки</label>\n" +
             "</div>",
         buttons: {
             deleteCycle: {
@@ -150,7 +151,7 @@ $(document).on('dblclick', '.index', function () {
             },
             updateCycle: {
                 label: "Сохранить",
-                className: 'btn-primary',
+                className: 'btn-success',
                 callback: function () {
                     saveCycle(currElement, textLabel);
                 }
