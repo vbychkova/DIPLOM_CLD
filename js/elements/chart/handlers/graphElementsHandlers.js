@@ -130,7 +130,7 @@ $(document).on('dblclick', '.index', function () {
     const type = getSelectedCycleType(currElement,textLabel);
     const checked = getStatusOfRadioButtonsInCycleMenu(type);
     bootbox.dialog({
-        title: "Управыление циклами",
+        title: "Управление циклами",
         message: "<p>Тип цикла:</p>" +
             "<div class=\"radio\">\n" +
             "  <label><input type=\"radio\" name=\"optradio\" class='select' id='1' " + checked[0] + ">Балансирующий цикл</label>\n" +
