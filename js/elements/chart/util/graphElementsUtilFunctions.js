@@ -167,7 +167,9 @@ function onDrag(evt) {
 }
 
 function onDragEnd(evt) {
-
+    if(is.chrome()|| is.opera()){
+        bufferFlag=false;
+    }
     evt.data.view.pointerup(evt);
     $(document).off('.linker');
 }
