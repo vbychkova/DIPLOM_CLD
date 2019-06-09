@@ -1,5 +1,4 @@
 const graph = new joint.dia.Graph;
-
 let historyOfGraph = [];
 let zoom;
 let bufferFlag = false;
